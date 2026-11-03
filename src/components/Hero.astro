@@ -1,0 +1,67 @@
+---
+// Hero.astro - CleanPhoto Privacy Vault
+---
+
+<section class="relative pt-20 pb-6 sm:pt-24 sm:pb-8 text-center px-4 overflow-hidden max-w-4xl mx-auto">
+  <!-- Subtle ambient glow background spots -->
+  <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-80 h-80 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative z-10">
+    <!-- Privacy Commitment Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1c0a0e]/95 border border-red-500/40 text-red-300 text-xs sm:text-sm font-medium mb-5 shadow-[0_0_15px_rgba(239,68,68,0.25)]">
+      <span class="flex h-2 w-2 relative">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+      </span>
+      <span class="font-bold text-white tracking-wide">100% In-Browser RAM Sanitization</span>
+      <span class="text-red-700 hidden sm:inline">•</span>
+      <span class="text-red-300/90 hidden sm:inline font-mono">Zero Server Storage</span>
+    </div>
+
+    <!-- Main Headline -->
+    <h1 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-3 leading-tight sm:leading-tight">
+      Strip Hidden <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 via-rose-400 to-red-300">EXIF & GPS Leaks</span>
+      <br class="hidden sm:inline" /> Before You Post Online
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="text-xs sm:text-sm md:text-base text-[#9CA3AF] max-w-xl mx-auto mb-6 leading-relaxed">
+      Smartphone photos embed your <strong class="text-red-400 font-semibold">exact home GPS coordinates</strong>, camera serial number, and timestamp. CleanPhoto destroys all metadata locally in your browser memory before upload.
+    </p>
+
+    <!-- 4 Clean Highlights -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-left">
+      <div class="crimson-glass p-2.5 sm:p-3 rounded-xl border border-red-500/20 flex items-center gap-2">
+        <span class="text-red-500 text-base">📍</span>
+        <div class="min-w-0">
+          <h4 class="text-xs font-bold text-white truncate">GPS Scrub</h4>
+          <p class="text-[10px] text-[#9CA3AF] truncate">Zero map coordinates</p>
+        </div>
+      </div>
+
+      <div class="crimson-glass p-2.5 sm:p-3 rounded-xl border border-red-500/20 flex items-center gap-2">
+        <span class="text-red-500 text-base">🛡️</span>
+        <div class="min-w-0">
+          <h4 class="text-xs font-bold text-white truncate">100% RAM Only</h4>
+          <p class="text-[10px] text-[#9CA3AF] truncate">Zero server storage</p>
+        </div>
+      </div>
+
+      <div class="crimson-glass p-2.5 sm:p-3 rounded-xl border border-red-500/20 flex items-center gap-2">
+        <span class="text-red-500 text-base">🔍</span>
+        <div class="min-w-0">
+          <h4 class="text-xs font-bold text-white truncate">Hardware Mask</h4>
+          <p class="text-[10px] text-[#9CA3AF] truncate">Wipes serials & model</p>
+        </div>
+      </div>
+
+      <div class="crimson-glass p-2.5 sm:p-3 rounded-xl border border-red-500/20 flex items-center gap-2">
+        <span class="text-red-500 text-base">📦</span>
+        <div class="min-w-0">
+          <h4 class="text-xs font-bold text-white truncate">Batch ZIP</h4>
+          <p class="text-[10px] text-[#9CA3AF] truncate">1-click bundle export</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

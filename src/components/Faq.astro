@@ -1,0 +1,78 @@
+---
+// Faq.astro - Red Threat & Vault Edition
+---
+
+<section id="faq" class="w-full max-w-4xl mx-auto px-4 py-8 scroll-mt-20">
+  <div class="text-center max-w-2xl mx-auto mb-6">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/60 border border-red-500/40 text-red-300 text-xs font-mono mb-2">
+      <span>Zero-Trust Privacy Proof</span>
+    </div>
+    <h2 class="text-xl sm:text-2xl font-extrabold text-white mb-1.5">
+      Technical FAQ & Verification
+    </h2>
+    <p class="text-xs sm:text-sm text-[#9CA3AF]">
+      How CleanPhoto guarantees 100% in-browser security without sending bytes to any remote server.
+    </p>
+  </div>
+
+  <div class="space-y-4">
+    <!-- FAQ 1 -->
+    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
+      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
+        <span>How does CleanPhoto destroy EXIF metadata without a backend server?</span>
+        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+      </summary>
+      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
+        CleanPhoto operates 100% inside your web browser’s JavaScript engine. It loads your image into an in-memory <code class="text-red-400 bg-[#0c0507] px-1 py-0.5 rounded font-mono">HTML5 Canvas</code> at full native resolution and re-encodes pure pixel data into a fresh Blob. Because canvas rasterization only copies pixel color channels (RGBA), metadata blocks like EXIF APP1, IPTC, XMP, and GPS coordinates are physically discarded in the newly generated file.
+      </div>
+    </details>
+
+    <!-- FAQ 2 -->
+    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
+      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
+        <span>How can I verify zero bytes are uploaded to remote servers?</span>
+        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+      </summary>
+      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
+        You can independently prove this in two ways:
+        <ol class="list-decimal list-inside space-y-1.5 mt-2 text-gray-300">
+          <li><strong>Offline Airplane Mode:</strong> Load <code class="text-red-300">cleanphoto.fixeehub.com</code>, turn off your Wi-Fi or disconnect your internet cable, and drag & drop images. CleanPhoto continues to parse, scrub, and export sanitized images 100% offline.</li>
+          <li><strong>DevTools Network Tab:</strong> Open DevTools (<kbd class="px-1.5 py-0.5 rounded bg-black text-[11px] font-mono border border-red-950">F12</kbd>), switch to the <em>Network</em> tab, filter by <em>Fetch/XHR</em>, and clean a photo. You will see 0 outbound HTTP/WebSocket requests.</li>
+        </ol>
+      </div>
+    </details>
+
+    <!-- FAQ 3 -->
+    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
+      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
+        <span>Will my photo lose dimensions, sharpness, or image quality?</span>
+        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+      </summary>
+      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
+        No. The canvas width and height match <code class="text-red-300 bg-[#0c0507] px-1 py-0.5 rounded font-mono">image.naturalWidth</code> and <code class="text-red-300 bg-[#0c0507] px-1 py-0.5 rounded font-mono">image.naturalHeight</code> pixel-for-pixel with high-precision smoothing enabled. By default, high-quality quantization (95% for JPEG, lossless for PNG) is applied, preserving original sharpness, aspect ratio, and color depth.
+      </div>
+    </details>
+
+    <!-- FAQ 4 -->
+    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
+      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
+        <span>What image file formats are supported?</span>
+        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+      </summary>
+      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
+        CleanPhoto supports all standard web image formats: <strong>JPEG / JPG, PNG, and WebP</strong>. You can choose to preserve the original format or convert between WebP, PNG, or high-quality JPEG during the scrub.
+      </div>
+    </details>
+
+    <!-- FAQ 5 -->
+    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
+      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
+        <span>Why don't Reddit and Quora automatically remove GPS data?</span>
+        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+      </summary>
+      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
+        While some major web frontends compress photos, mobile apps, third-party viewers, Discord CDN attachments, and direct cloud links frequently retain raw EXIF data. Furthermore, scrapers and archiving bots often cache uploads before processing occurs. Scrubbing client-side before upload is the only foolproof privacy protection.
+      </div>
+    </details>
+  </div>
+</section>
