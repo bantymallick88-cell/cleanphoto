@@ -1,6 +1,6 @@
 ---
 // CleanPhoto - Image EXIF & Privacy Metadata Stripper
-// Red Threat & Cyber Privacy Vault Edition for cleanphoto.fixeehub.com
+// Handcrafted Vercel / Linear Dark Mode Aesthetic
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import CleanEngine from '../components/CleanEngine.astro';
@@ -16,13 +16,13 @@ const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "CleanPhoto",
-  "alternateName": "CleanPhoto Privacy Vault",
+  "alternateName": "CleanPhoto by FixeeHub",
   "url": "https://cleanphoto.fixeehub.com",
   "applicationCategory": "SecurityApplication",
-  "operatingSystem": "Web, All Modern Browsers (Chrome, Firefox, Safari, Edge)",
+  "operatingSystem": "Web, All Modern Browsers",
   "browserRequirements": "Requires JavaScript and HTML5 Canvas API support",
-  "description": "Production-ready zero-server web application to strip hidden GPS location coordinates, phone serial numbers, camera signatures, and sensitive metadata in browser RAM before posting to Reddit, Quora, or Discord.",
-  "softwareVersion": "2.4.0",
+  "description": "Production-ready zero-server web application to strip hidden GPS location coordinates, phone serial numbers, camera signatures, and sensitive metadata in browser RAM before posting online.",
+  "softwareVersion": "1.2.0",
   "offers": {
     "@type": "Offer",
     "price": "0",
@@ -50,7 +50,7 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How does CleanPhoto destroy EXIF metadata without a backend server?",
+      "name": "How does CleanPhoto destroy EXIF metadata without a server?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "CleanPhoto operates 100% inside your web browser’s JavaScript engine. It loads your image into an in-memory HTML5 Canvas at full native resolution and re-encodes pure pixel data into a fresh Blob, physically dropping all EXIF APP1, IPTC, XMP, and GPS coordinates."
@@ -58,7 +58,7 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      "name": "How can I verify zero bytes are uploaded to remote servers?",
+      "name": "How can I independently verify zero network traffic?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "You can test CleanPhoto in complete offline airplane mode after loading, or inspect the DevTools Network Tab (F12) to verify 0 outbound HTTP/WebSocket requests during metadata inspection and stripping."
@@ -74,10 +74,10 @@ const faqSchema = {
     },
     {
       "@type": "Question",
-      "name": "Why don't Reddit and Quora automatically remove GPS data?",
+      "name": "Which image formats are supported?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "While some web frontends compress photos, mobile apps, third-party viewers, Discord CDN attachments, and direct cloud links frequently retain raw EXIF data. Scrubbing client-side before upload is the only foolproof privacy protection."
+        "text": "CleanPhoto supports all modern web image formats: JPEG / JPG, PNG, and WebP. You can choose to preserve the original format or cross-convert during export."
       }
     }
   ]
@@ -93,65 +93,70 @@ const faqSchema = {
     <meta name="generator" content={Astro.generator} />
     
     <!-- Primary Technical SEO Meta Tags -->
-    <title>CleanPhoto - Free EXIF & Privacy Metadata Stripper | Zero-Server Red Threat Vault</title>
-    <meta name="title" content="CleanPhoto - Free EXIF & Privacy Metadata Stripper | Zero-Server Red Threat Vault" />
-    <meta name="description" content="Strip hidden GPS location coordinates, camera serial numbers, and sensitive EXIF metadata from photos in your browser RAM before uploading to Reddit, Quora, or Discord. 100% serverless, zero cloud upload." />
+    <title>CleanPhoto — Free EXIF & Privacy Metadata Stripper | 100% In-Browser RAM</title>
+    <meta name="title" content="CleanPhoto — Free EXIF & Privacy Metadata Stripper | 100% In-Browser RAM" />
+    <meta name="description" content="Strip hidden GPS location coordinates, camera serial numbers, and sensitive EXIF metadata from photos in your browser RAM before uploading online. 100% serverless, zero cloud upload." />
     <meta name="keywords" content="EXIF stripper, remove EXIF data, strip GPS coordinates from photo, privacy metadata remover, client-side EXIF remover, Reddit photo privacy, cleanphoto fixeehub, camera serial stripper, zero server photo cleaner" />
     <link rel="canonical" href="https://cleanphoto.fixeehub.com" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="theme-color" content="#0c0507" />
+    <meta name="theme-color" content="#050505" />
 
-    <!-- Open Graph / Facebook / Reddit Preview -->
+    <!-- Open Graph / Social Previews -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://cleanphoto.fixeehub.com" />
     <meta property="og:site_name" content="CleanPhoto by FixeeHub" />
-    <meta property="og:title" content="CleanPhoto - Free EXIF & GPS Metadata Stripper (100% Zero-Server)" />
+    <meta property="og:title" content="CleanPhoto — Free EXIF & GPS Metadata Stripper" />
     <meta property="og:description" content="Destroy hidden GPS coordinates, camera serials, and timestamps directly in browser RAM before posting photos online. Zero cloud uploads." />
     <meta property="og:image" content="https://cleanphoto.fixeehub.com/favicon.svg" />
 
-    <!-- Twitter Card / Quora Link Previews -->
+    <!-- Twitter Card -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://cleanphoto.fixeehub.com" />
-    <meta property="twitter:title" content="CleanPhoto - Zero-Server EXIF & Privacy Metadata Stripper" />
+    <meta property="twitter:title" content="CleanPhoto — Zero-Server EXIF & Privacy Metadata Stripper" />
     <meta property="twitter:description" content="Neutralize hidden GPS coordinates, camera body serials, and timestamps locally in browser RAM." />
     <meta property="twitter:image" content="https://cleanphoto.fixeehub.com/favicon.svg" />
 
-    <!-- Google Fonts for JetBrains Mono & Inter -->
+    <!-- Google Fonts for Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Schema.org JSON-LD Structured Data: SoftwareApplication & FAQPage -->
     <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
-  <body class="bg-[#030102] text-slate-100 min-h-screen selection:bg-red-600/40 selection:text-white antialiased font-sans">
+  <body class="bg-[#050505] text-[#EDEDED] min-h-screen selection:bg-neutral-800 selection:text-white antialiased font-sans relative">
     
-    <!-- Fixed Navigation Header -->
-    <Header />
+    <!-- Top ambient glow -->
+    <div class="pointer-events-none fixed inset-0 ambient-glow z-0"></div>
 
-    <!-- Main Content Area -->
-    <main class="relative z-10 space-y-2">
-      <!-- Hero Section with Serverless Red Vault Guarantee -->
-      <Hero />
+    <div class="relative z-10 flex flex-col min-h-screen">
+      <!-- Floating Glassmorphic Header -->
+      <Header />
 
-      <!-- Interactive EXIF Threat Inspection & Stripping Engine -->
-      <CleanEngine />
+      <!-- Main Content -->
+      <main class="flex-1">
+        <!-- Hero Section with Top Pill & 2x2 Feature Grid -->
+        <Hero />
 
-      <!-- Story Card: Why Metadata Removal Matters & Contact Info -->
-      <PrivacyStory />
+        <!-- Floating Scrubber Dropzone Card with Ambient Glow -->
+        <CleanEngine />
 
-      <!-- Threat Breakdown & Payload Inspection -->
-      <WhyCleanCard />
+        <!-- Aesthetic Privacy Story Card -->
+        <PrivacyStory />
 
-      <!-- Technical FAQ & Proof -->
-      <Faq />
-    </main>
+        <!-- Memory Buffer Payload Inspection -->
+        <WhyCleanCard />
 
-    <!-- Sleek Red Cyber Footer -->
-    <Footer />
+        <!-- Modern Expandable Accordion FAQs -->
+        <Faq />
+      </main>
 
-    <!-- Compact Mobile Action Bar (for 320px+ phone viewports) -->
-    <MobileActionBar />
+      <!-- Minimalist 1-Line Mono Footer with Status Indicator -->
+      <Footer />
+
+      <!-- Mobile Action Bar -->
+      <MobileActionBar />
+    </div>
   </body>
 </html>

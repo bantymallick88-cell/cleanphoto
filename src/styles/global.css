@@ -4,95 +4,42 @@
 
 @layer base {
   :root {
-    --vault-bg-top: #1c0a0e;
-    --vault-bg-mid: #0c0507;
-    --vault-bg-bottom: #030102;
-    --cyber-danger: #EF4444;
-    --crimson-neon: #DC2626;
+    --bg-primary: #050505;
   }
 
   body {
-    background: radial-gradient(circle at top, #1c0a0e 0%, #0c0507 60%, #030102 100%);
-    min-height: 100vh;
-    color: #F8FAFC;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background-color: #050505;
+    color: #EDEDED;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Custom Red Vault Scrollbar */
+  /* Minimalist Linear/Vercel Scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #0c0507;
+    background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(239, 68, 68, 0.3);
-    border-radius: 4px;
+    background: #262626;
+    border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(239, 68, 68, 0.6);
+    background: #404040;
   }
 }
 
-/* Crimson Glassmorphism */
-.crimson-glass {
-  background: rgba(28, 10, 14, 0.8);
-  border: 1px solid rgba(239, 68, 68, 0.2);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+/* Subtle Ambient Gradient at Top */
+.ambient-glow {
+  background: radial-gradient(circle 800px at 50% -100px, rgba(239, 68, 68, 0.07), transparent 70%);
 }
 
-.crimson-glass-hover {
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.crimson-glass-hover:hover {
-  border-color: rgba(239, 68, 68, 0.5);
-  box-shadow: 0 0 30px -5px rgba(239, 68, 68, 0.35);
-}
-
-/* Red Threat Glows */
-.neon-glow-red {
-  box-shadow: 0 0 25px -4px rgba(239, 68, 68, 0.5);
-}
-.neon-glow-crimson {
-  box-shadow: 0 0 30px -4px rgba(220, 38, 38, 0.6);
-}
-.neon-glow-subtle {
-  box-shadow: 0 0 15px -2px rgba(239, 68, 68, 0.25);
-}
-
-.text-glow-red {
-  text-shadow: 0 0 14px rgba(239, 68, 68, 0.7);
-}
-.text-glow-white {
-  text-shadow: 0 0 18px rgba(255, 255, 255, 0.6);
-}
-
-/* Red Cyber Laser Grid */
-.cyber-red-grid {
-  background-size: 36px 36px;
-  background-image: 
-    linear-gradient(to right, rgba(239, 68, 68, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(239, 68, 68, 0.05) 1px, transparent 1px);
-}
-
-/* Threat Pulse Border */
-@keyframes threat-border-pulse {
-  0%, 100% { border-color: rgba(239, 68, 68, 0.3); }
-  50% { border-color: rgba(239, 68, 68, 0.85); box-shadow: 0 0 25px rgba(239, 68, 68, 0.4); }
-}
-.animate-threat-pulse {
-  animation: threat-border-pulse 2.2s ease-in-out infinite;
-}
-
-/* Vault Scan Line */
-@keyframes vault-scan {
-  0% { transform: translateY(-100%); opacity: 0; }
-  50% { opacity: 0.8; }
-  100% { transform: translateY(100%); opacity: 0; }
-}
-.animate-vault-scan {
-  animation: vault-scan 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+/* Micro-dot background */
+.dot-grid {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
 }

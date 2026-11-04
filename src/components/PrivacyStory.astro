@@ -1,77 +1,61 @@
 ---
-// PrivacyStory.astro - Why Metadata Removal Matters & Contact Info
+// PrivacyStory.astro - Linear / Vercel Minimal Privacy Narrative
 ---
 
-<section id="why-clean" class="w-full max-w-4xl mx-auto px-4 py-8 scroll-mt-20">
-  <div class="crimson-glass rounded-2xl p-6 sm:p-8 border border-red-500/25 relative overflow-hidden">
-    <!-- Ambient Red Background Glow -->
-    <div class="absolute -top-24 right-0 w-72 h-72 bg-red-600/10 rounded-full blur-3xl pointer-events-none"></div>
-
-    <div class="relative z-10">
-      
-      <!-- Privacy Commitment Badge -->
-      <div class="flex flex-wrap items-center justify-between gap-3 mb-5 border-b border-red-950 pb-4">
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/70 border border-red-500/40 text-red-300 text-xs font-mono">
-          <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-          <span>100% In-Browser RAM Sanitization • Zero Server Storage</span>
-        </div>
-
-        <a 
-          href="mailto:contactfixeehub@gmail.com" 
-          class="inline-flex items-center gap-1.5 text-xs text-red-300 hover:text-white transition-colors font-mono"
-        >
-          <svg class="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-          <span>contactfixeehub@gmail.com</span>
-        </a>
+<section id="why-clean" class="w-full max-w-3xl mx-auto px-4 py-6 scroll-mt-20">
+  <div class="bg-neutral-900/40 border border-neutral-800/80 rounded-2xl p-6 sm:p-8 relative overflow-hidden text-left">
+    <!-- Top Meta Line -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-5 pb-4 border-b border-neutral-800/60">
+      <div class="inline-flex items-center gap-2 text-xs font-mono text-neutral-400">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+        <span>Local Privacy Commitment</span>
       </div>
 
-      <!-- Card Title -->
-      <h2 class="text-xl sm:text-2xl md:text-3xl font-extrabold text-white mb-4 flex items-center gap-2">
-        <span>Why Metadata Removal Matters</span>
-      </h2>
+      <a 
+        href="mailto:contactfixeehub@gmail.com" 
+        class="inline-flex items-center gap-1.5 text-xs text-neutral-400 hover:text-white transition-colors font-mono"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+        </svg>
+        <span>contactfixeehub@gmail.com</span>
+      </a>
+    </div>
 
-      <!-- Story Narrative -->
-      <div class="space-y-3.5 text-xs sm:text-sm text-gray-300 leading-relaxed">
-        <p class="text-gray-200">
-          Imagine taking a photo of a morning coffee on your apartment balcony and sharing it online. To your friends, it’s just a cozy snapshot. But embedded deep inside the image file is a silent telemetry beacon: the exact latitude and longitude coordinates pointing to your building, the altitude indicating your floor number, your smartphone's unique factory serial number, and a timestamp accurate to the millisecond.
-        </p>
+    <!-- Title -->
+    <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white mb-4">
+      Why Metadata Removal Matters
+    </h2>
 
-        <p class="text-gray-300">
-          Without metadata removal, anyone downloading the file — from automated web crawlers to malicious actors — can cross-reference those coordinates with public street view databases. Over time, recurring photos posted across social forums allow strangers to map your home location, daily routine, and device identity without your knowledge.
-        </p>
+    <!-- Story Description -->
+    <div class="space-y-4 text-xs sm:text-sm text-neutral-400 leading-[1.65]">
+      <p class="text-neutral-300">
+        Imagine snapping a photo of your morning coffee on your apartment balcony and sharing it online. To your friends, it’s just a casual post. But embedded deep inside the file’s EXIF tags is a silent surveillance record: the exact latitude and longitude pointing directly to your building, an altitude value revealing which floor you live on, your smartphone’s unique factory serial number, and a timestamp recorded down to the millisecond.
+      </p>
 
-        <p class="text-gray-300">
-          <strong>CleanPhoto</strong> solves this by acting as your local privacy airlock. Before your image ever touches an upload input, our in-memory engine draws the visual pixels onto an offscreen canvas and re-encodes the file in your browser's RAM. All GPS coordinates, device fingerprints, and serial tags are destroyed — ensuring you share only the picture, never your location.
-        </p>
+      <p>
+        Without metadata removal, anyone downloading that image — from automated forum scrapers to malicious actors — can reverse-engineer those coordinates with street mapping software. Over time, recurring photos shared across public communities allow strangers to track your daily routine, home address, and device footprint.
+      </p>
+
+      <p>
+        <strong class="text-white font-medium">CleanPhoto</strong> solves this locally. Before your photo ever reaches an upload field, our client-side engine paints the visual pixels onto an offscreen canvas and re-encodes the image fresh in your browser memory. All GPS coordinates, device fingerprints, and serial numbers are permanently destroyed — ensuring you share only the picture, never your identity.
+      </p>
+    </div>
+
+    <!-- Contact & Feedback Callout -->
+    <div class="mt-6 pt-5 border-t border-neutral-800/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+      <div class="text-neutral-400">
+        Have feedback, custom workflow requests, or security questions?
       </div>
-
-      <!-- Aesthetic Contact & Feedback Callout Box -->
-      <div class="mt-6 p-4 rounded-xl bg-[#0c0507] border border-red-950 flex flex-col sm:flex-row items-center justify-between gap-3">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-lg bg-red-950/60 border border-red-500/30 flex items-center justify-center text-red-400 flex-shrink-0">
-            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
-          </div>
-          <div>
-            <h4 class="text-xs sm:text-sm font-bold text-white">Feedback & Privacy Queries</h4>
-            <p class="text-[11px] text-[#9CA3AF]">Have suggestions, feature requests, or enterprise security questions?</p>
-          </div>
-        </div>
-
-        <a 
-          href="mailto:contactfixeehub@gmail.com" 
-          class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-red-600/30 hover:bg-red-600/50 border border-red-500/40 text-white text-xs font-semibold transition-all active:scale-95 flex-shrink-0 shadow-sm"
-        >
-          <svg class="w-3.5 h-3.5 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-          <span>contactfixeehub@gmail.com</span>
-        </a>
-      </div>
-
+      <a 
+        href="mailto:contactfixeehub@gmail.com" 
+        class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-white font-medium text-xs transition-colors self-start sm:self-auto"
+      >
+        <span>Email Feedback</span>
+        <svg class="w-3.5 h-3.5 text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>

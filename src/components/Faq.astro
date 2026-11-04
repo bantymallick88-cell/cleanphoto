@@ -1,77 +1,72 @@
 ---
-// Faq.astro - Red Threat & Vault Edition
+// Faq.astro - Linear / Vercel Modern Expandable Accordions
 ---
 
-<section id="faq" class="w-full max-w-4xl mx-auto px-4 py-8 scroll-mt-20">
-  <div class="text-center max-w-2xl mx-auto mb-6">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/60 border border-red-500/40 text-red-300 text-xs font-mono mb-2">
-      <span>Zero-Trust Privacy Proof</span>
-    </div>
-    <h2 class="text-xl sm:text-2xl font-extrabold text-white mb-1.5">
-      Technical FAQ & Verification
+<section id="faq" class="w-full max-w-3xl mx-auto px-4 py-8 scroll-mt-20 text-left">
+  <!-- Section Header -->
+  <div class="mb-6">
+    <h2 class="text-lg sm:text-xl font-bold tracking-tight text-white mb-1">
+      Frequently Asked Questions
     </h2>
-    <p class="text-xs sm:text-sm text-[#9CA3AF]">
-      How CleanPhoto guarantees 100% in-browser security without sending bytes to any remote server.
+    <p class="text-xs sm:text-sm text-neutral-400 font-normal">
+      Technical verification, privacy guarantees, and local architecture.
     </p>
   </div>
 
-  <div class="space-y-4">
+  <div class="space-y-2">
     <!-- FAQ 1 -->
-    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
-      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
-        <span>How does CleanPhoto destroy EXIF metadata without a backend server?</span>
-        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+    <details class="bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-colors rounded-xl px-4 py-3 group">
+      <summary class="font-medium text-white text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between select-none">
+        <span>How does CleanPhoto destroy EXIF metadata without a server?</span>
+        <svg class="w-4 h-4 text-neutral-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
       </summary>
-      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
-        CleanPhoto operates 100% inside your web browser’s JavaScript engine. It loads your image into an in-memory <code class="text-red-400 bg-[#0c0507] px-1 py-0.5 rounded font-mono">HTML5 Canvas</code> at full native resolution and re-encodes pure pixel data into a fresh Blob. Because canvas rasterization only copies pixel color channels (RGBA), metadata blocks like EXIF APP1, IPTC, XMP, and GPS coordinates are physically discarded in the newly generated file.
+      <div class="pt-2.5 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/60 mt-2.5">
+        CleanPhoto operates 100% inside your browser's JavaScript engine. It paints your image onto an offscreen <code class="text-neutral-300 bg-neutral-900 px-1.5 py-0.5 rounded font-mono text-[11px]">HTML5 Canvas</code> at full native dimensions and exports pure pixel data. Because canvas rasterization only copies pixel color channels (RGBA), metadata blocks like EXIF APP1, IPTC, XMP, and GPS coordinates are physically dropped.
       </div>
     </details>
 
     <!-- FAQ 2 -->
-    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
-      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
-        <span>How can I verify zero bytes are uploaded to remote servers?</span>
-        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+    <details class="bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-colors rounded-xl px-4 py-3 group">
+      <summary class="font-medium text-white text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between select-none">
+        <span>How can I independently verify zero network traffic?</span>
+        <svg class="w-4 h-4 text-neutral-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
       </summary>
-      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
-        You can independently prove this in two ways:
-        <ol class="list-decimal list-inside space-y-1.5 mt-2 text-gray-300">
-          <li><strong>Offline Airplane Mode:</strong> Load <code class="text-red-300">cleanphoto.fixeehub.com</code>, turn off your Wi-Fi or disconnect your internet cable, and drag & drop images. CleanPhoto continues to parse, scrub, and export sanitized images 100% offline.</li>
-          <li><strong>DevTools Network Tab:</strong> Open DevTools (<kbd class="px-1.5 py-0.5 rounded bg-black text-[11px] font-mono border border-red-950">F12</kbd>), switch to the <em>Network</em> tab, filter by <em>Fetch/XHR</em>, and clean a photo. You will see 0 outbound HTTP/WebSocket requests.</li>
-        </ol>
+      <div class="pt-2.5 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/60 mt-2.5">
+        You can prove this at any time:
+        <ul class="list-disc list-inside mt-1.5 space-y-1">
+          <li><strong>Airplane Mode:</strong> Load the web app, disconnect your internet connection, and drop any photo. CleanPhoto continues to parse, sanitize, and download files completely offline.</li>
+          <li><strong>DevTools Network Tab:</strong> Open DevTools (<kbd class="px-1 py-0.5 rounded bg-neutral-900 text-[10px] font-mono border border-neutral-800">F12</kbd>), switch to the Network tab, and process images. You will see 0 outbound HTTP or WebSocket requests.</li>
+        </ul>
       </div>
     </details>
 
     <!-- FAQ 3 -->
-    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
-      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
-        <span>Will my photo lose dimensions, sharpness, or image quality?</span>
-        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+    <details class="bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-colors rounded-xl px-4 py-3 group">
+      <summary class="font-medium text-white text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between select-none">
+        <span>Will my photo lose dimensions, resolution, or sharpness?</span>
+        <svg class="w-4 h-4 text-neutral-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
       </summary>
-      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
-        No. The canvas width and height match <code class="text-red-300 bg-[#0c0507] px-1 py-0.5 rounded font-mono">image.naturalWidth</code> and <code class="text-red-300 bg-[#0c0507] px-1 py-0.5 rounded font-mono">image.naturalHeight</code> pixel-for-pixel with high-precision smoothing enabled. By default, high-quality quantization (95% for JPEG, lossless for PNG) is applied, preserving original sharpness, aspect ratio, and color depth.
+      <div class="pt-2.5 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/60 mt-2.5">
+        No. The canvas width and height match <code class="text-neutral-300 bg-neutral-900 px-1 py-0.5 rounded font-mono text-[11px]">naturalWidth</code> and <code class="text-neutral-300 bg-neutral-900 px-1 py-0.5 rounded font-mono text-[11px]">naturalHeight</code> pixel-for-pixel with high-precision smoothing enabled. By default, pristine 95% quality is applied for JPEG and 100% lossless compression for PNG.
       </div>
     </details>
 
     <!-- FAQ 4 -->
-    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
-      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
-        <span>What image file formats are supported?</span>
-        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
+    <details class="bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-colors rounded-xl px-4 py-3 group">
+      <summary class="font-medium text-white text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between select-none">
+        <span>Which image formats are supported?</span>
+        <svg class="w-4 h-4 text-neutral-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        </svg>
       </summary>
-      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
-        CleanPhoto supports all standard web image formats: <strong>JPEG / JPG, PNG, and WebP</strong>. You can choose to preserve the original format or convert between WebP, PNG, or high-quality JPEG during the scrub.
-      </div>
-    </details>
-
-    <!-- FAQ 5 -->
-    <details class="crimson-glass rounded-2xl border border-red-500/25 group open:border-red-500/50 transition-all">
-      <summary class="p-5 font-bold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none">
-        <span>Why don't Reddit and Quora automatically remove GPS data?</span>
-        <span class="text-red-400 group-open:rotate-180 transition-transform duration-200">▼</span>
-      </summary>
-      <div class="px-5 pb-5 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-red-950 pt-3">
-        While some major web frontends compress photos, mobile apps, third-party viewers, Discord CDN attachments, and direct cloud links frequently retain raw EXIF data. Furthermore, scrapers and archiving bots often cache uploads before processing occurs. Scrubbing client-side before upload is the only foolproof privacy protection.
+      <div class="pt-2.5 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/60 mt-2.5">
+        CleanPhoto supports all modern web image formats: <strong>JPEG / JPG, PNG, and WebP</strong>. You can choose to preserve the original format or cross-convert during export.
       </div>
     </details>
   </div>

@@ -1,137 +1,61 @@
 ---
-// WhyCleanCard.astro - Red Threat & Privacy Breakdown
+// WhyCleanCard.astro - Linear / Vercel Threat Breakdown
 ---
 
-<section class="w-full max-w-4xl mx-auto px-4 py-8">
-  <div class="text-center max-w-2xl mx-auto mb-6">
-    <h3 class="text-lg sm:text-xl font-extrabold text-white mb-2">
-      Hidden Threat Breakdown
-    </h3>
-    <p class="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed">
-      How smartphones automatically attach surveillance identifiers to every image file.
-    </p>
-  </div>
-
-  <!-- 3 Threat Scenarios Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-    <!-- Threat 1: Physical Doxxing -->
-    <div class="crimson-glass p-6 rounded-2xl border border-red-500/30 relative overflow-hidden group hover:border-red-500/60 transition-all duration-300">
-      <div class="absolute -top-10 -right-10 w-32 h-32 bg-red-600/10 rounded-full blur-2xl pointer-events-none"></div>
-      <div class="w-12 h-12 rounded-xl bg-red-950/80 border border-red-500/50 flex items-center justify-center text-red-400 text-2xl mb-4 group-hover:scale-110 transition-transform">
-        📍
+<section class="w-full max-w-3xl mx-auto px-4 py-4">
+  <!-- Interactive Terminal Comparison: Raw vs Scrubbed -->
+  <div class="bg-neutral-900/40 border border-neutral-800/80 rounded-2xl p-5 sm:p-6 text-left">
+    <div class="flex items-center justify-between pb-3 mb-4 border-b border-neutral-800">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-neutral-400"></span>
+        <h3 class="text-xs sm:text-sm font-semibold text-white tracking-tight">Memory Buffer Payload Inspection</h3>
       </div>
-      <h3 class="text-lg font-bold text-white mb-2 flex items-center justify-between">
-        Home Address Doxxing
-        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-600/50">Critical Risk</span>
-      </h3>
-      <p class="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed mb-4">
-        You post a photo of your new pet or desk setup on Reddit. If the platform preserves original attachments, anyone can inspect <code class="text-red-400 bg-[#0c0507] px-1 py-0.5 rounded font-mono">GPSLatitude</code> to locate your front door within 3 meters.
-      </p>
-      <div class="p-3 rounded-lg bg-[#0c0507] border border-red-950 text-[11px] font-mono text-gray-400">
-        <span class="text-red-500 font-bold">LEAK:</span> 37°46'29.8"N 122°25'09.8"W<br />
-        <span class="text-[#9CA3AF]">→ Exact Physical Street Address Exposed</span>
-      </div>
+      <span class="text-[10px] font-mono text-neutral-400 bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded">
+        Zero Cloud APIs
+      </span>
     </div>
 
-    <!-- Threat 2: Cross-Platform Device Fingerprinting -->
-    <div class="crimson-glass p-6 rounded-2xl border border-red-500/30 relative overflow-hidden group hover:border-red-500/60 transition-all duration-300">
-      <div class="absolute -top-10 -right-10 w-32 h-32 bg-red-600/10 rounded-full blur-2xl pointer-events-none"></div>
-      <div class="w-12 h-12 rounded-xl bg-red-950/80 border border-red-500/50 flex items-center justify-center text-red-400 text-2xl mb-4 group-hover:scale-110 transition-transform">
-        🔍
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2 flex items-center justify-between">
-        Hardware Fingerprinting
-        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-600/50">High Threat</span>
-      </h3>
-      <p class="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed mb-4">
-        Camera sensors and lenses embed unique factory serial numbers (<code class="text-red-400 bg-[#0c0507] px-1 py-0.5 rounded font-mono">BodySerialNumber</code>). OSINT scrapers correlate serials to link your anonymous Reddit throwaway to your personal LinkedIn or Quora.
-      </p>
-      <div class="p-3 rounded-lg bg-[#0c0507] border border-red-950 text-[11px] font-mono text-gray-400">
-        <span class="text-red-500 font-bold">SERIAL:</span> #DN6L4980P0K5<br />
-        <span class="text-[#9CA3AF]">→ Identity Correlated Across Social Sites</span>
-      </div>
-    </div>
-
-    <!-- Threat 3: Timeline & Routine Tracking -->
-    <div class="crimson-glass p-6 rounded-2xl border border-red-500/30 relative overflow-hidden group hover:border-red-500/60 transition-all duration-300">
-      <div class="absolute -top-10 -right-10 w-32 h-32 bg-red-600/10 rounded-full blur-2xl pointer-events-none"></div>
-      <div class="w-12 h-12 rounded-xl bg-red-950/80 border border-red-500/50 flex items-center justify-center text-red-400 text-2xl mb-4 group-hover:scale-110 transition-transform">
-        ⏱️
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2 flex items-center justify-between">
-        Sub-Second Time Leaks
-        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-600/50">Habit Exposure</span>
-      </h3>
-      <p class="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed mb-4">
-        Photos record the exact millisecond, timezone offset, and software build. Malicious actors analyze timestamps to determine when you leave home for work or travel out of town on vacation.
-      </p>
-      <div class="p-3 rounded-lg bg-[#0c0507] border border-red-950 text-[11px] font-mono text-gray-400">
-        <span class="text-red-500 font-bold">TIMESTAMP:</span> 2026-10-14 15:32:18.42<br />
-        <span class="text-[#9CA3AF]">→ Routine & Work Hours Revealed</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Terminal Comparison (Raw Leaks vs Red Vault Sanitized) -->
-  <div class="crimson-glass rounded-2xl p-5 sm:p-8 border border-red-500/30">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
-      <div>
-        <h3 class="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
-          <span>Memory Buffer Payload Comparison</span>
-          <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-500/40">Verified</span>
-        </h3>
-        <p class="text-xs text-[#9CA3AF]">What social platforms extract from an untouched photo vs after CleanPhoto scrubbing.</p>
-      </div>
-      <div class="text-xs font-mono text-red-400 bg-[#0c0507] px-3 py-1.5 rounded-lg border border-red-950 self-start sm:self-auto">
-        Zero Cloud API Calls
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
-      <!-- Raw Image Leaks -->
-      <div class="rounded-xl bg-[#030102] p-4 border border-red-500/40 relative">
-        <div class="flex items-center justify-between text-red-400 pb-2 mb-2 border-b border-red-950">
-          <span class="font-bold flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-            Raw Smartphone Photo (52 Leaks)
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+      <!-- Raw Untouched Photo -->
+      <div class="rounded-xl bg-neutral-950 p-3.5 border border-neutral-800">
+        <div class="flex items-center justify-between text-neutral-400 pb-2 mb-2 border-b border-neutral-900 text-[11px]">
+          <span class="font-medium text-rose-400 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+            Raw Image Telemetry
           </span>
-          <span class="text-[10px] bg-red-950 text-red-300 px-1.5 py-0.5 rounded border border-red-600/40">Vulnerable</span>
+          <span class="text-[9px] bg-neutral-900 px-1.5 py-0.5 rounded text-neutral-400">52 Headers</span>
         </div>
-        <pre class="text-red-200/90 leading-relaxed overflow-x-auto text-[11px] space-y-1">
-[GPS] GPSLatitude: 37° 46' 29.80" N
-[GPS] GPSLongitude: 122° 25' 09.84" W
-[GPS] GPSAltitude: 15.2 meters
+        <pre class="text-neutral-400 leading-relaxed overflow-x-auto text-[10px] sm:text-[11px] space-y-1">
+[GPS] Latitude: 37° 46' 29.80" N
+[GPS] Longitude: 122° 25' 09.84" W
+[GPS] Altitude: 15.2 meters
 [Device] Make: Apple
 [Device] Model: iPhone 15 Pro Max
 [Device] Serial: DN6L4980P0K5
 [Lens] Model: 6.86mm f/1.78
-[OS] Software: iOS 18.2 (22C152)
-[Time] DateTimeOriginal: 2026:10:14 15:32:18
-[Exposure] ISO: 64, Shutter: 1/120s, F: 1.8
-[XMP] Photoshop History & Document IDs</pre>
+[Time] Timestamp: 2026:10:14 15:32:18
+[XMP] Embedded Document IDs</pre>
       </div>
 
-      <!-- CleanPhoto Sanitized -->
-      <div class="rounded-xl bg-[#030102] p-4 border border-red-900/60 relative">
-        <div class="flex items-center justify-between text-gray-200 pb-2 mb-2 border-b border-red-950">
-          <span class="font-bold flex items-center gap-1.5 text-white">
-            <span class="w-2 h-2 rounded-full bg-red-500"></span>
-            After CleanPhoto Canvas Scrub (0 Leaks)
+      <!-- After CleanPhoto Scrub -->
+      <div class="rounded-xl bg-neutral-950 p-3.5 border border-neutral-800">
+        <div class="flex items-center justify-between text-neutral-400 pb-2 mb-2 border-b border-neutral-900 text-[11px]">
+          <span class="font-medium text-emerald-400 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            CleanPhoto Sanitized
           </span>
-          <span class="text-[10px] bg-red-950/80 text-white px-1.5 py-0.5 rounded border border-red-500/40">100% Vault Safe</span>
+          <span class="text-[9px] bg-neutral-900 px-1.5 py-0.5 rounded text-neutral-400">0 Headers</span>
         </div>
-        <pre class="text-gray-300 leading-relaxed overflow-x-auto text-[11px] space-y-1">
-[GPS] &lt;NONE DETECTED&gt; (Destroyed)
-[GPS] &lt;NONE DETECTED&gt; (Destroyed)
-[GPS] &lt;NONE DETECTED&gt; (Destroyed)
-[Device] &lt;NONE DETECTED&gt; (Destroyed)
-[Device] &lt;NONE DETECTED&gt; (Destroyed)
-[Device] &lt;NONE DETECTED&gt; (Destroyed)
-[Lens] &lt;NONE DETECTED&gt; (Destroyed)
-[OS] &lt;NONE DETECTED&gt; (Destroyed)
-[Time] &lt;NONE DETECTED&gt; (Destroyed)
-[Exposure] Pure RGB Canvas Pixels Only
-[XMP/IPTC] Zero Byte Payload</pre>
+        <pre class="text-neutral-500 leading-relaxed overflow-x-auto text-[10px] sm:text-[11px] space-y-1">
+[GPS] &lt;STRIPPED IN RAM&gt;
+[GPS] &lt;STRIPPED IN RAM&gt;
+[GPS] &lt;STRIPPED IN RAM&gt;
+[Device] &lt;STRIPPED IN RAM&gt;
+[Device] &lt;STRIPPED IN RAM&gt;
+[Device] &lt;STRIPPED IN RAM&gt;
+[Lens] &lt;STRIPPED IN RAM&gt;
+[Time] &lt;STRIPPED IN RAM&gt;
+[Payload] Pure RGBA Pixels Only</pre>
       </div>
     </div>
   </div>
