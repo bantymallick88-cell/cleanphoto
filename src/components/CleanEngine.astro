@@ -5,10 +5,10 @@
 <div id="clean-engine" class="w-full max-w-3xl mx-auto px-4 py-2 scroll-mt-20">
   
   <!-- Scrubber Dropzone Card Container with Ambient Red Glow -->
-  <div class="border border-red-500/20 shadow-[0_0_50px_-15px_rgba(239,68,68,0.15)] bg-neutral-950 rounded-2xl p-5 sm:p-6 transition-all">
+  <div class="glass-panel rounded-2xl p-5 sm:p-6 transition-all border-rose-500/20 shadow-[0_0_50px_-15px_rgba(225,29,72,0.12)]">
     
     <!-- Card Header -->
-    <div class="flex items-center justify-between pb-4 mb-4 border-b border-neutral-800/80">
+    <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
       <div class="flex items-center gap-2">
         <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
         <h2 class="text-sm sm:text-base font-semibold text-white tracking-tight">EXIF Threat Scrubber</h2>
@@ -18,7 +18,7 @@
         <button
           id="btn-load-sample"
           type="button"
-          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 hover:text-white text-xs font-mono transition-all active:scale-95"
+          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-slate-300 hover:text-white text-xs font-mono transition-all active:scale-95"
         >
           <span class="text-rose-400">⚡</span>
           <span>Load Demo Sample</span>
@@ -27,7 +27,7 @@
         <button
           id="btn-clear-all"
           type="button"
-          class="hidden items-center gap-1 px-2.5 py-1 rounded-lg bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-400 hover:text-rose-400 text-xs font-mono transition-all"
+          class="hidden items-center gap-1 px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-slate-400 hover:text-rose-400 text-xs font-mono transition-all"
           title="Reset files"
         >
           Reset
@@ -38,7 +38,7 @@
     <!-- Dropzone -->
     <div 
       id="drop-zone"
-      class="border-2 border-dashed border-neutral-800 hover:border-rose-500/50 bg-neutral-900/30 transition-all rounded-xl p-8 sm:p-10 text-center cursor-pointer group relative overflow-hidden"
+      class="border-2 border-dashed border-white/[0.1] hover:border-rose-500/50 bg-white/[0.02] transition-all rounded-xl p-8 sm:p-10 text-center cursor-pointer group relative overflow-hidden"
     >
       <!-- Hidden File Input -->
       <input 

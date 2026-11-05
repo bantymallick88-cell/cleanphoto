@@ -4,28 +4,28 @@
 
 <section class="w-full max-w-3xl mx-auto px-4 py-4">
   <!-- Interactive Terminal Comparison: Raw vs Scrubbed -->
-  <div class="bg-neutral-900/40 border border-neutral-800/80 rounded-2xl p-5 sm:p-6 text-left">
-    <div class="flex items-center justify-between pb-3 mb-4 border-b border-neutral-800">
+  <div class="glass-panel glass-panel-hover rounded-2xl p-5 sm:p-6 text-left">
+    <div class="flex items-center justify-between pb-3 mb-4 border-b border-white/[0.08]">
       <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-neutral-400"></span>
+        <span class="w-2 h-2 rounded-full bg-slate-400"></span>
         <h3 class="text-xs sm:text-sm font-semibold text-white tracking-tight">Memory Buffer Payload Inspection</h3>
       </div>
-      <span class="text-[10px] font-mono text-neutral-400 bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded">
+      <span class="text-[10px] font-mono text-slate-400 bg-white/[0.04] border border-white/[0.08] px-2 py-0.5 rounded">
         Zero Cloud APIs
       </span>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
       <!-- Raw Untouched Photo -->
-      <div class="rounded-xl bg-neutral-950 p-3.5 border border-neutral-800">
-        <div class="flex items-center justify-between text-neutral-400 pb-2 mb-2 border-b border-neutral-900 text-[11px]">
+      <div class="rounded-xl bg-[#030305] p-3.5 border border-white/[0.08]">
+        <div class="flex items-center justify-between text-slate-400 pb-2 mb-2 border-b border-white/[0.06] text-[11px]">
           <span class="font-medium text-rose-400 flex items-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
             Raw Image Telemetry
           </span>
-          <span class="text-[9px] bg-neutral-900 px-1.5 py-0.5 rounded text-neutral-400">52 Headers</span>
+          <span class="text-[9px] bg-white/[0.04] px-1.5 py-0.5 rounded text-slate-400">52 Headers</span>
         </div>
-        <pre class="text-neutral-400 leading-relaxed overflow-x-auto text-[10px] sm:text-[11px] space-y-1">
+        <pre class="text-slate-400 leading-relaxed overflow-x-auto text-[10px] sm:text-[11px] space-y-1">
 [GPS] Latitude: 37° 46' 29.80" N
 [GPS] Longitude: 122° 25' 09.84" W
 [GPS] Altitude: 15.2 meters
@@ -38,15 +38,15 @@
       </div>
 
       <!-- After CleanPhoto Scrub -->
-      <div class="rounded-xl bg-neutral-950 p-3.5 border border-neutral-800">
-        <div class="flex items-center justify-between text-neutral-400 pb-2 mb-2 border-b border-neutral-900 text-[11px]">
+      <div class="rounded-xl bg-[#030305] p-3.5 border border-white/[0.08]">
+        <div class="flex items-center justify-between text-slate-400 pb-2 mb-2 border-b border-white/[0.06] text-[11px]">
           <span class="font-medium text-emerald-400 flex items-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
             CleanPhoto Sanitized
           </span>
-          <span class="text-[9px] bg-neutral-900 px-1.5 py-0.5 rounded text-neutral-400">0 Headers</span>
+          <span class="text-[9px] bg-white/[0.04] px-1.5 py-0.5 rounded text-slate-400">0 Headers</span>
         </div>
-        <pre class="text-neutral-500 leading-relaxed overflow-x-auto text-[10px] sm:text-[11px] space-y-1">
+        <pre class="text-slate-500 leading-relaxed overflow-x-auto text-[10px] sm:text-[11px] space-y-1">
 [GPS] &lt;STRIPPED IN RAM&gt;
 [GPS] &lt;STRIPPED IN RAM&gt;
 [GPS] &lt;STRIPPED IN RAM&gt;

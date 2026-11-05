@@ -1,24 +1,44 @@
 ---
-// Footer.astro - 1-Line Minimalist Mono Footer
+// Footer.astro - Developer Signature & Operational Status
 ---
 
-<footer class="w-full border-t border-neutral-800/60 mt-16 bg-neutral-950/40">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs font-mono text-neutral-500">
-    <!-- Left: Copyright & Contact -->
+<footer class="w-full border-t border-white/10 mt-16 bg-[#070709] py-8">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
+    <!-- Left: Developer Signature -->
     <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
-      <span>© 2026 CleanPhoto</span>
-      <span class="text-neutral-700">•</span>
-      <span>Built for <a href="https://cleanphoto.fixeehub.com" class="text-neutral-400 hover:text-white transition-colors">FixeeHub Ecosystem</a></span>
-      <span class="text-neutral-700">•</span>
-      <a href="mailto:contactfixeehub@gmail.com" class="text-neutral-400 hover:text-white transition-colors">
-        contactfixeehub@gmail.com
-      </a>
+      <span class="text-slate-300 font-medium">Crafted for FixeeHub Ecosystem</span>
+      <span class="text-slate-700">•</span>
+      <span class="text-slate-400">100% Client-Side Privacy</span>
     </div>
 
-    <!-- Right: Operational Status Indicator -->
-    <div class="inline-flex items-center gap-2 text-neutral-400 font-mono">
-      <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10B981]"></span>
-      <span>All Systems Operational</span>
+    <!-- Right: Operational Status & Clean Social Links -->
+    <div class="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
+      <!-- Operational Status Dot -->
+      <div class="inline-flex items-center gap-2 text-slate-300 font-mono">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10B981] animate-pulse"></span>
+        <span class="text-[11px] sm:text-xs">All Systems Operational</span>
+      </div>
+
+      <span class="text-slate-700 hidden sm:inline">•</span>
+
+      <!-- Email Link -->
+      <a 
+        href="mailto:contactfixeehub@gmail.com" 
+        class="text-slate-400 hover:text-white transition-colors"
+      >
+        contactfixeehub@gmail.com
+      </a>
+
+      <!-- GitHub -->
+      <a 
+        href="https://github.com/bantymallick88-cell/cleanphoto" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="text-slate-400 hover:text-white transition-colors"
+        aria-label="GitHub Repository"
+      >
+        GitHub
+      </a>
     </div>
   </div>
 </footer>

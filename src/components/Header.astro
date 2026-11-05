@@ -1,30 +1,41 @@
 ---
-// Header.astro - Vercel / Linear Dark Mode Floating Header
+// Header.astro - Linear / Vercel Glassmorphic Header
 ---
 
-<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-neutral-950/80 border-b border-neutral-800/60 transition-colors">
+<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-[#070709]/80 border-b border-white/[0.08] transition-colors">
   <div class="w-full max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-    <!-- Left: Brand + Pill -->
-    <a href="/" class="flex items-center gap-2 group flex-shrink-0">
-      <span class="font-bold tracking-tight text-white text-sm sm:text-base group-hover:text-neutral-200 transition-colors">
-        CLEANPHOTO
-      </span>
-      <span class="text-[10px] font-mono text-neutral-400 bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded tracking-wide">
-        BY FIXEEHUB
-      </span>
+    <!-- Left: Brand Logo & Pill -->
+    <a href="/" class="flex items-center gap-2 sm:gap-2.5 flex-shrink-0 group">
+      <!-- Minimalist Security Aperture Icon -->
+      <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/[0.04] border border-white/[0.1] flex items-center justify-center text-slate-200 group-hover:border-rose-500/40 group-hover:text-rose-400 transition-colors">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L4 5v6.5C4 16.5 7.4 20.8 12 22c4.6-1.2 8-5.5 8-10.5V5l-8-3z" />
+          <circle cx="12" cy="11.5" r="4.5" stroke-dasharray="2 1.5" />
+          <circle cx="12" cy="11.5" r="1.2" fill="currentColor" />
+        </svg>
+      </div>
+
+      <div class="flex items-center gap-1.5 flex-shrink-0">
+        <span class="font-extrabold tracking-tight text-white text-sm sm:text-base group-hover:text-slate-200 transition-colors">
+          CLEANPHOTO
+        </span>
+        <span class="text-[10px] font-mono font-medium text-slate-400 bg-white/[0.04] border border-white/[0.08] px-2 py-0.5 rounded tracking-wide">
+          x FIXEEHUB
+        </span>
+      </div>
     </a>
 
-    <!-- Right: Nav links + Badge + GitHub -->
-    <div class="flex items-center gap-3 sm:gap-5">
-      <nav class="hidden md:flex items-center gap-4 text-xs sm:text-sm text-neutral-400">
+    <!-- Right: Nav links + Status Badge + GitHub -->
+    <div class="flex items-center gap-2.5 sm:gap-4">
+      <nav class="hidden md:flex items-center gap-4 text-xs sm:text-sm text-slate-400">
         <a href="#why-clean" class="hover:text-white transition-colors">Privacy Story</a>
         <a href="#features" class="hover:text-white transition-colors">Features</a>
         <a href="#faq" class="hover:text-white transition-colors">Docs</a>
       </nav>
 
       <!-- v1.2 Green Outline Badge -->
-      <span class="inline-flex items-center gap-1.5 text-[11px] font-mono font-medium px-2 py-0.5 rounded-full border border-emerald-500/30 text-emerald-400 bg-emerald-950/20">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      <span class="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-mono font-medium px-2 py-0.5 rounded-full border border-emerald-500/30 text-emerald-400 bg-emerald-950/20">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
         v1.2
       </span>
 
@@ -33,7 +44,7 @@
         href="https://github.com/bantymallick88-cell/cleanphoto" 
         target="_blank" 
         rel="noopener noreferrer" 
-        class="text-neutral-400 hover:text-white transition-colors p-1"
+        class="text-slate-400 hover:text-white transition-colors p-1"
         aria-label="GitHub Repository"
       >
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">

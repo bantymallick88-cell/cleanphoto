@@ -1,73 +1,76 @@
 ---
-// Faq.astro - Linear / Vercel Modern Expandable Accordions
+// Faq.astro - Linear / Vercel Minimal Border-Bottom Accordion
 ---
 
 <section id="faq" class="w-full max-w-3xl mx-auto px-4 py-8 scroll-mt-20 text-left">
   <!-- Section Header -->
   <div class="mb-6">
-    <h2 class="text-lg sm:text-xl font-bold tracking-tight text-white mb-1">
+    <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1.5">
       Frequently Asked Questions
     </h2>
-    <p class="text-xs sm:text-sm text-neutral-400 font-normal">
+    <p class="text-xs sm:text-sm text-slate-400 font-normal">
       Technical verification, privacy guarantees, and local architecture.
     </p>
   </div>
 
-  <div class="space-y-2">
+  <!-- Accordion List with Clean Border-Bottom Dividers (No Bulky Backgrounds) -->
+  <div class="border-t border-white/10 divide-y divide-white/10">
+    
     <!-- FAQ 1 -->
-    <details class="bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-colors rounded-xl px-4 py-3 group">
-      <summary class="font-medium text-white text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between select-none">
+    <details class="group py-4 transition-all">
+      <summary class="font-semibold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none hover:text-slate-200 transition-colors">
         <span>How does CleanPhoto destroy EXIF metadata without a server?</span>
-        <svg class="w-4 h-4 text-neutral-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform duration-200 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </summary>
-      <div class="pt-2.5 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/60 mt-2.5">
-        CleanPhoto operates 100% inside your browser's JavaScript engine. It paints your image onto an offscreen <code class="text-neutral-300 bg-neutral-900 px-1.5 py-0.5 rounded font-mono text-[11px]">HTML5 Canvas</code> at full native dimensions and exports pure pixel data. Because canvas rasterization only copies pixel color channels (RGBA), metadata blocks like EXIF APP1, IPTC, XMP, and GPS coordinates are physically dropped.
+      <div class="pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
+        CleanPhoto operates 100% inside your browser's JavaScript engine. It loads your image onto an offscreen <code class="text-slate-300 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">HTML5 Canvas</code> at full native dimensions and re-encodes pure pixel data into a fresh Blob. Because canvas rasterization only copies pixel color channels (RGBA), metadata blocks like EXIF APP1, IPTC, XMP, and GPS coordinates are physically dropped.
       </div>
     </details>
 
     <!-- FAQ 2 -->
-    <details class="bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-colors rounded-xl px-4 py-3 group">
-      <summary class="font-medium text-white text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between select-none">
+    <details class="group py-4 transition-all">
+      <summary class="font-semibold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none hover:text-slate-200 transition-colors">
         <span>How can I independently verify zero network traffic?</span>
-        <svg class="w-4 h-4 text-neutral-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform duration-200 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </summary>
-      <div class="pt-2.5 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/60 mt-2.5">
-        You can prove this at any time:
-        <ul class="list-disc list-inside mt-1.5 space-y-1">
-          <li><strong>Airplane Mode:</strong> Load the web app, disconnect your internet connection, and drop any photo. CleanPhoto continues to parse, sanitize, and download files completely offline.</li>
-          <li><strong>DevTools Network Tab:</strong> Open DevTools (<kbd class="px-1 py-0.5 rounded bg-neutral-900 text-[10px] font-mono border border-neutral-800">F12</kbd>), switch to the Network tab, and process images. You will see 0 outbound HTTP or WebSocket requests.</li>
+      <div class="pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
+        You can independently prove this at any time:
+        <ul class="list-disc list-inside mt-2 space-y-1.5">
+          <li><strong>Airplane Mode:</strong> Load the web app, disconnect your internet connection, and drop any photo. CleanPhoto continues to parse, sanitize, and export files completely offline.</li>
+          <li><strong>DevTools Network Tab:</strong> Open DevTools (<kbd class="px-1.5 py-0.5 rounded bg-white/[0.04] text-[10px] font-mono border border-white/[0.08]">F12</kbd>), switch to the Network tab, and process images. You will see 0 outbound HTTP or WebSocket requests.</li>
         </ul>
       </div>
     </details>
 
     <!-- FAQ 3 -->
-    <details class="bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-colors rounded-xl px-4 py-3 group">
-      <summary class="font-medium text-white text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between select-none">
+    <details class="group py-4 transition-all">
+      <summary class="font-semibold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none hover:text-slate-200 transition-colors">
         <span>Will my photo lose dimensions, resolution, or sharpness?</span>
-        <svg class="w-4 h-4 text-neutral-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform duration-200 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </summary>
-      <div class="pt-2.5 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/60 mt-2.5">
-        No. The canvas width and height match <code class="text-neutral-300 bg-neutral-900 px-1 py-0.5 rounded font-mono text-[11px]">naturalWidth</code> and <code class="text-neutral-300 bg-neutral-900 px-1 py-0.5 rounded font-mono text-[11px]">naturalHeight</code> pixel-for-pixel with high-precision smoothing enabled. By default, pristine 95% quality is applied for JPEG and 100% lossless compression for PNG.
+      <div class="pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
+        No. The canvas width and height match <code class="text-slate-300 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">naturalWidth</code> and <code class="text-slate-300 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">naturalHeight</code> pixel-for-pixel with high-precision smoothing enabled. By default, pristine 95% quality is applied for JPEG and 100% lossless compression for PNG.
       </div>
     </details>
 
     <!-- FAQ 4 -->
-    <details class="bg-neutral-900/30 border border-neutral-800 hover:border-neutral-700 transition-colors rounded-xl px-4 py-3 group">
-      <summary class="font-medium text-white text-xs sm:text-sm cursor-pointer list-none flex items-center justify-between select-none">
+    <details class="group py-4 transition-all">
+      <summary class="font-semibold text-white text-sm sm:text-base cursor-pointer list-none flex items-center justify-between select-none hover:text-slate-200 transition-colors">
         <span>Which image formats are supported?</span>
-        <svg class="w-4 h-4 text-neutral-500 group-open:rotate-180 transition-transform duration-200 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform duration-200 flex-shrink-0 ml-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </summary>
-      <div class="pt-2.5 text-xs text-neutral-400 leading-relaxed border-t border-neutral-800/60 mt-2.5">
+      <div class="pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
         CleanPhoto supports all modern web image formats: <strong>JPEG / JPG, PNG, and WebP</strong>. You can choose to preserve the original format or cross-convert during export.
       </div>
     </details>
+
   </div>
 </section>

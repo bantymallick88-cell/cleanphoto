@@ -1,6 +1,6 @@
 ---
 // CleanPhoto - Image EXIF & Privacy Metadata Stripper
-// Handcrafted Vercel / Linear Dark Mode Aesthetic
+// Principal Linear / Vercel Design Standard for cleanphoto.fixeehub.com
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import CleanEngine from '../components/CleanEngine.astro';
@@ -53,7 +53,7 @@ const faqSchema = {
       "name": "How does CleanPhoto destroy EXIF metadata without a server?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "CleanPhoto operates 100% inside your web browser’s JavaScript engine. It loads your image into an in-memory HTML5 Canvas at full native resolution and re-encodes pure pixel data into a fresh Blob, physically dropping all EXIF APP1, IPTC, XMP, and GPS coordinates."
+        "text": "CleanPhoto operates 100% inside your web browser’s JavaScript engine. It loads your image onto an in-memory HTML5 Canvas at full native resolution and re-encodes pure pixel data into a fresh Blob, physically dropping all EXIF APP1, IPTC, XMP, and GPS coordinates."
       }
     },
     {
@@ -99,7 +99,7 @@ const faqSchema = {
     <meta name="keywords" content="EXIF stripper, remove EXIF data, strip GPS coordinates from photo, privacy metadata remover, client-side EXIF remover, Reddit photo privacy, cleanphoto fixeehub, camera serial stripper, zero server photo cleaner" />
     <link rel="canonical" href="https://cleanphoto.fixeehub.com" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="theme-color" content="#050505" />
+    <meta name="theme-color" content="#070709" />
 
     <!-- Open Graph / Social Previews -->
     <meta property="og:type" content="website" />
@@ -119,16 +119,16 @@ const faqSchema = {
     <!-- Google Fonts for Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
     <!-- Schema.org JSON-LD Structured Data: SoftwareApplication & FAQPage -->
     <script type="application/ld+json" set:html={JSON.stringify(softwareSchema)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
   </head>
-  <body class="bg-[#050505] text-[#EDEDED] min-h-screen selection:bg-neutral-800 selection:text-white antialiased font-sans relative">
+  <body class="bg-[#070709] text-slate-100 min-h-screen selection:bg-rose-500/20 selection:text-white antialiased font-sans relative">
     
-    <!-- Top ambient glow -->
-    <div class="pointer-events-none fixed inset-0 ambient-glow z-0"></div>
+    <!-- Top Ambient Glow Gradient -->
+    <div class="pointer-events-none fixed inset-0 top-ambient-glow z-0"></div>
 
     <div class="relative z-10 flex flex-col min-h-screen">
       <!-- Floating Glassmorphic Header -->
@@ -136,10 +136,10 @@ const faqSchema = {
 
       <!-- Main Content -->
       <main class="flex-1">
-        <!-- Hero Section with Top Pill & 2x2 Feature Grid -->
+        <!-- Hero Section with Top Pill & Bento Feature Grid -->
         <Hero />
 
-        <!-- Floating Scrubber Dropzone Card with Ambient Glow -->
+        <!-- Floating Scrubber Dropzone Card -->
         <CleanEngine />
 
         <!-- Aesthetic Privacy Story Card -->
@@ -148,14 +148,14 @@ const faqSchema = {
         <!-- Memory Buffer Payload Inspection -->
         <WhyCleanCard />
 
-        <!-- Modern Expandable Accordion FAQs -->
+        <!-- Clean Border-Bottom Accordion FAQs -->
         <Faq />
       </main>
 
-      <!-- Minimalist 1-Line Mono Footer with Status Indicator -->
+      <!-- Developer Signature & Operational Status Footer -->
       <Footer />
 
-      <!-- Mobile Action Bar -->
+      <!-- Compact Mobile Action Bar -->
       <MobileActionBar />
     </div>
   </body>
