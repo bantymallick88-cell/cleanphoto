@@ -194,7 +194,7 @@
               >
                 <span id="btn-clean-single-text" class="flex items-center justify-center gap-2">
                   <span>🛡️</span>
-                  <span>SCRUB PRIVACY LEAKS & SAVE PHOTO</span>
+                  <span>SCRUB METADATA & SAVE PHOTO</span>
                 </span>
               </button>
             </div>
@@ -599,11 +599,11 @@
       cleanedStampBadge.classList.remove('flex');
     }
 
-    // Determine if sensitive EXIF/GPS exists
-    const hasSensitiveExif = item.inspection.gps.hasGps ||
-      Boolean(item.inspection.hardware.model || item.inspection.hardware.make || item.inspection.hardware.serialNumber) ||
-      Boolean(item.inspection.exposure.dateTimeOriginal) ||
-      item.inspection.totalTagsCount > 3;
+    // Determine if actual sensitive EXIF/GPS leaks exist
+    const hasGps = Boolean(item.inspection.gps && item.inspection.gps.hasGps && item.inspection.gps.latitude !== null && item.inspection.gps.longitude !== null);
+    const hasHardware = Boolean(item.inspection.hardware && (item.inspection.hardware.make || item.inspection.hardware.model || item.inspection.hardware.serialNumber || item.inspection.hardware.lensModel));
+    const hasTimestamp = Boolean(item.inspection.exposure && (item.inspection.exposure.dateTimeOriginal || item.inspection.exposure.dateTimeDigitized));
+    const hasActualLeaks = hasGps || hasHardware || hasTimestamp;
 
     if (item.cleanedResult) {
       // 100% Sanitized state
@@ -616,28 +616,28 @@
       threatBadgeText.textContent = "100% SANITIZED & SAFE PHOTO";
       btnCleanSingleText.innerHTML = `<span>✓</span><span>PHOTO SAVED — DOWNLOAD AGAIN</span>`;
       btnCleanSingle.className = "w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-600/25 text-white font-bold text-xs sm:text-sm tracking-wide transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
-    } else if (hasSensitiveExif) {
-      // High Contrast Red Alert
-      const score = Math.max(50, item.inspection.threat.score);
+    } else if (hasActualLeaks) {
+      // High Contrast Red Alert (> 50/100)
+      const score = Math.max(65, item.inspection.threat.score);
       threatScoreNumber.textContent = `Score: ${score}/100`;
       threatScoreNumber.className = "text-xs font-mono font-bold text-rose-400";
       threatScoreBar.style.width = `${score}%`;
       threatScoreBar.className = "h-full rounded-full bg-gradient-to-r from-amber-400 via-rose-500 to-red-500";
       threatBadgeContainer.className = "p-3 rounded-xl text-xs font-bold border border-rose-500/50 bg-rose-950/50 text-rose-200 flex items-center justify-center gap-2 text-center shadow-[0_0_20px_-3px_rgba(244,63,94,0.35)]";
       threatBadgeIcon.textContent = "🔴";
-      threatBadgeText.textContent = "HIGH PRIVACY RISK DETECTED";
-      btnCleanSingleText.innerHTML = `<span>🛡️</span><span>SCRUB PRIVACY LEAKS & SAVE PHOTO</span>`;
+      threatBadgeText.textContent = "HIGH PRIVACY LEAK: GPS / Device Info Detected";
+      btnCleanSingleText.innerHTML = `<span>🛡️</span><span>SCRUB METADATA & SAVE PHOTO</span>`;
       btnCleanSingle.className = "w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-xs sm:text-sm tracking-wide transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
     } else {
-      // 100% Safe Photo
-      threatScoreNumber.textContent = "Clean: 0/100";
+      // Safe Photo: 0/100
+      threatScoreNumber.textContent = "Score: 0/100";
       threatScoreNumber.className = "text-xs font-mono font-bold text-emerald-400";
       threatScoreBar.style.width = "0%";
       threatScoreBar.className = "h-full rounded-full bg-emerald-500/50";
       threatBadgeContainer.className = "p-3 rounded-xl text-xs font-bold border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 flex items-center justify-center gap-2 text-center shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]";
       threatBadgeIcon.textContent = "🟢";
-      threatBadgeText.textContent = "100% SAFE PHOTO";
-      btnCleanSingleText.innerHTML = `<span>🛡️</span><span>SCRUB PRIVACY LEAKS & SAVE PHOTO</span>`;
+      threatBadgeText.textContent = "SAFE PHOTO: Zero EXIF / GPS Tags Found";
+      btnCleanSingleText.innerHTML = `<span>🛡️</span><span>SCRUB METADATA & SAVE PHOTO</span>`;
       btnCleanSingle.className = "w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-xs sm:text-sm tracking-wide transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
     }
 

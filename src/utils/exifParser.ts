@@ -187,52 +187,48 @@ export async function inspectImageFile(fileOrBuffer: File | ArrayBuffer): Promis
       : undefined
   };
 
-  // 4. Dynamic Privacy Threat Score
+  // 4. Dynamic Privacy Threat Score Engine
+  const hasHardwareSpecs = Boolean(hardware.make || hardware.model || hardware.serialNumber || hardware.lensModel);
+  const hasTimestamps = Boolean(exposure.dateTimeOriginal || exposure.dateTimeDigitized);
+  const hasActualLeaks = hasGps || hasHardwareSpecs || hasTimestamps;
+
   let score = 0;
   const reasons: string[] = [];
 
-  if (hasGps) {
-    score += 65;
-    reasons.push("Embedded GPS Coordinates (Physical Home/Location Leak)");
+  if (hasActualLeaks) {
+    if (hasGps) {
+      score += 55;
+      reasons.push("Embedded GPS Coordinates (Physical Location Leak)");
+    }
+    if (hardware.serialNumber) {
+      score += 25;
+      reasons.push(`Device Serial ID Tag (${hardware.serialNumber})`);
+    }
+    if (hardware.model || hardware.make) {
+      score += 20;
+      reasons.push(`Hardware Device Signature: ${hardware.make || ''} ${hardware.model || ''}`.trim());
+    }
+    if (hasTimestamps) {
+      score += 15;
+      reasons.push(`Creation Timestamp (${exposure.dateTimeOriginal || exposure.dateTimeDigitized})`);
+    }
+    // Guaranteed > 50/100 if actual leaks are present
+    score = Math.max(65, Math.min(100, score));
+  } else {
+    // If GPS coordinates, device serials, and timestamps are ALL "None/Empty", set Risk Score = 0/100
+    score = 0;
   }
-  if (hardware.serialNumber) {
-    score += 25;
-    reasons.push(`Hardware Serial ID Tag (${hardware.serialNumber})`);
-  }
-  if (hardware.model || hardware.make) {
-    score += 15;
-    reasons.push(`Device Fingerprint: ${hardware.make || ''} ${hardware.model || ''}`.trim());
-  }
-  if (exposure.dateTimeOriginal) {
-    score += 15;
-    reasons.push(`Precise Creation Timestamp (${exposure.dateTimeOriginal})`);
-  }
-  if (hardware.software) {
-    score += 10;
-    reasons.push(`OS / Firmware Version (${hardware.software})`);
-  }
-  if (hardware.lensModel) {
-    score += 10;
-    reasons.push(`Lens Hardware Signature (${hardware.lensModel})`);
-  }
-
-  score = Math.min(100, score);
 
   let level: 'CRITICAL' | 'MEDIUM' | 'SAFE' = 'SAFE';
-  let badgeTitle = "🛡️ PRIVACY VAULT SECURE: 0 Metadata Leaks Detected";
-  let badgeClass = "bg-red-950/40 border-red-500/30 text-gray-200";
-  let badgeGlow = "shadow-[0_0_15px_rgba(239,68,68,0.2)]";
+  let badgeTitle = "🟢 SAFE PHOTO: Zero EXIF / GPS Tags Found";
+  let badgeClass = "bg-emerald-950/40 border-emerald-500/30 text-emerald-300";
+  let badgeGlow = "shadow-[0_0_15px_rgba(16,185,129,0.2)]";
 
-  if (hasGps || score >= 50) {
+  if (hasActualLeaks) {
     level = 'CRITICAL';
-    badgeTitle = "🔴 HIGH PRIVACY RISK: EXIF & GPS Location Data Detected";
-    badgeClass = "bg-red-950/80 border-red-500/70 text-red-200";
-    badgeGlow = "shadow-[0_0_25px_rgba(239,68,68,0.6)]";
-  } else if (score >= 15) {
-    level = 'MEDIUM';
-    badgeTitle = "⚠️ MEDIUM PRIVACY RISK: Device Hardware & Timestamps Embedded";
-    badgeClass = "bg-red-950/60 border-red-600/50 text-red-300";
-    badgeGlow = "shadow-[0_0_18px_rgba(220,38,38,0.4)]";
+    badgeTitle = "🔴 HIGH PRIVACY LEAK: GPS / Device Info Detected";
+    badgeClass = "bg-rose-950/80 border-rose-500/70 text-rose-200";
+    badgeGlow = "shadow-[0_0_25px_rgba(244,63,94,0.6)]";
   }
 
   return {
