@@ -95,7 +95,7 @@
     <!-- Active Work Area (Queue & Inspection) -->
     <div id="workspace-container" class="hidden mt-6 space-y-4">
       
-      <!-- Toolbar: Queue count + Format select + Batch buttons -->
+      <!-- Toolbar: Queue count + Clean Batch Actions -->
       <div class="p-3 rounded-xl bg-neutral-900/40 border border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div class="flex items-center gap-2">
           <span class="text-xs font-semibold text-white">Queue:</span>
@@ -105,30 +105,25 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-2">
-          <select 
-            id="select-format" 
-            class="bg-neutral-950 border border-neutral-800 rounded-lg px-2 py-1 text-xs text-neutral-300 focus:outline-none focus:border-neutral-700 font-mono"
-          >
-            <option value="original">Preserve Format</option>
-            <option value="image/jpeg">JPEG (95% Sharp)</option>
-            <option value="image/webp">WebP (Optimized)</option>
-            <option value="image/png">PNG (Lossless)</option>
-            <option value="image/avif">AVIF (Modern)</option>
-          </select>
-
           <button
             id="btn-clean-all"
             type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white hover:bg-neutral-200 text-neutral-950 font-semibold text-xs transition-all active:scale-95"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-neutral-200 text-neutral-950 font-semibold text-xs transition-all active:scale-95 cursor-pointer"
           >
-            <span>Scrub All</span>
+            <svg class="w-3.5 h-3.5 text-neutral-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span>Scrub All Files</span>
           </button>
 
           <button
             id="btn-download-zip"
             type="button"
-            class="hidden inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-xs transition-all active:scale-95"
+            class="hidden inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-xs transition-all active:scale-95 cursor-pointer border border-neutral-700"
           >
+            <svg class="w-3.5 h-3.5 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+            </svg>
             <span>Download All (.ZIP)</span>
           </button>
         </div>
@@ -142,11 +137,11 @@
       <!-- Selected Image Inspector Details -->
       <div id="inspector-card" class="grid grid-cols-1 md:grid-cols-12 gap-4 pt-1">
         
-        <!-- Left: Preview & Actions -->
+        <!-- Left: Preview & 1-Click Action -->
         <div class="md:col-span-5 space-y-3">
-          <div class="p-3 rounded-xl bg-neutral-900/40 border border-neutral-800">
+          <div class="p-3.5 rounded-xl bg-neutral-900/40 border border-neutral-800">
             <div class="flex items-center justify-between gap-2 mb-2">
-              <span id="active-filename" class="text-xs font-semibold text-white truncate max-w-[160px]">
+              <span id="active-filename" class="text-xs font-semibold text-white truncate max-w-[170px]">
                 photo.jpg
               </span>
               <span id="active-dimensions" class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-neutral-950 text-neutral-400 border border-neutral-800 flex-shrink-0">
@@ -164,171 +159,144 @@
               />
 
               <!-- Cleaned Stamp Badge -->
-              <div id="cleaned-stamp-badge" class="hidden absolute top-2 right-2 px-2 py-0.5 rounded bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 text-[10px] font-mono font-semibold flex items-center gap-1">
+              <div id="cleaned-stamp-badge" class="hidden absolute top-2 right-2 px-2 py-0.5 rounded bg-emerald-950/90 border border-emerald-500/40 text-emerald-400 text-[10px] font-mono font-semibold items-center gap-1">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                 <span>SANITIZED</span>
               </div>
             </div>
 
-            <!-- Threat Score Box -->
-            <div class="mt-3 p-2.5 rounded-lg bg-neutral-950 border border-neutral-800/80">
-              <div class="flex items-center justify-between gap-2 mb-1.5">
-                <span class="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">Privacy Risk</span>
+            <!-- Real-Time EXIF Threat & Detection Badge Box -->
+            <div class="mt-3 p-3 rounded-lg bg-neutral-950 border border-neutral-800/80 space-y-2">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">Privacy Status</span>
                 <span id="threat-score-number" class="text-[11px] font-mono font-bold text-rose-400">Score: 85/100</span>
               </div>
-              <div class="w-full bg-neutral-900 h-1.5 rounded-full overflow-hidden mb-2">
-                <div id="threat-score-bar" class="h-full rounded-full bg-gradient-to-r from-amber-400 via-rose-500 to-red-500" style="width: 85%"></div>
+              <div class="w-full bg-neutral-900 h-1.5 rounded-full overflow-hidden">
+                <div id="threat-score-bar" class="h-full rounded-full bg-gradient-to-r from-amber-400 via-rose-500 to-red-500 transition-all duration-300" style="width: 85%"></div>
               </div>
-              <div id="threat-badge-container" class="p-1.5 rounded text-[11px] font-medium border border-rose-500/30 bg-rose-950/30 text-rose-300 flex items-center gap-1.5">
-                <span id="threat-badge-icon">🔴</span>
-                <span id="threat-badge-text" class="truncate leading-tight">GPS Coordinates Detected</span>
+              
+              <!-- Real-Time Detection Badge (Clean Web vs Leak Alert vs Sanitized) -->
+              <div id="threat-badge-container" class="p-2.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-2">
+                <span id="threat-badge-icon" class="flex-shrink-0">🔴</span>
+                <span id="threat-badge-text" class="leading-tight">HIGH PRIVACY LEAK: GPS Coordinates & Device Info Found</span>
               </div>
             </div>
 
-            <!-- Scrub / Download Buttons -->
-            <div class="mt-3 flex flex-col gap-1.5">
+            <!-- 1-Click Scrub & Save Primary Button -->
+            <div class="mt-3">
               <button
                 id="btn-clean-single"
                 type="button"
-                class="w-full py-2 px-3 rounded-lg bg-white hover:bg-neutral-200 text-neutral-950 font-semibold text-xs transition-all active:scale-[0.98] flex items-center justify-center gap-1.5"
+                class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-neutral-200 text-neutral-950 font-semibold text-xs sm:text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-sm cursor-pointer"
               >
-                <span>Strip EXIF from this Photo</span>
+                <svg id="btn-clean-icon" class="w-4 h-4 text-neutral-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
+                </svg>
+                <span id="btn-clean-single-text">Scrub Metadata & Save Photo</span>
               </button>
-
-              <a
-                id="btn-download-single"
-                href="#"
-                download="cleaned_photo.jpg"
-                class="hidden w-full py-2 px-3 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white font-semibold text-xs transition-all active:scale-[0.98] items-center justify-center gap-1.5"
-              >
-                <span>Download Sanitized Photo</span>
-              </a>
             </div>
           </div>
         </div>
 
-        <!-- Right: Categorized Tabs -->
+        <!-- Right: Sleek Metadata Inspection Cards -->
         <div class="md:col-span-7 space-y-3">
-          <div class="p-3 rounded-xl bg-neutral-900/40 border border-neutral-800">
-            <!-- Tabs Bar -->
-            <div class="flex items-center gap-1 border-b border-neutral-800 pb-2 mb-3 overflow-x-auto scrollbar-none">
-              <button class="tab-btn active px-2.5 py-1 rounded text-xs font-medium text-white bg-neutral-800 transition-colors flex items-center gap-1 flex-shrink-0" data-tab="gps">
-                <span>📍 GPS</span>
-                <span id="tab-gps-count" class="px-1 py-0.2 rounded-full bg-rose-950 text-rose-400 text-[9px]">!</span>
+          <div class="p-3.5 rounded-xl bg-neutral-900/40 border border-neutral-800">
+            <!-- Sleek Tabs Bar (GPS, Hardware, Timestamp) -->
+            <div class="flex items-center gap-1.5 border-b border-neutral-800 pb-2 mb-3 overflow-x-auto scrollbar-none">
+              <button class="tab-btn active px-3 py-1 rounded-lg text-xs font-medium text-white bg-neutral-800 transition-colors flex items-center gap-1.5 flex-shrink-0 cursor-pointer" data-tab="gps">
+                <span>📍 GPS Location</span>
+                <span id="tab-gps-count" class="px-1.5 py-0.2 rounded-full bg-rose-950 text-rose-400 text-[10px] font-mono">!</span>
               </button>
-              <button class="tab-btn px-2.5 py-1 rounded text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 flex-shrink-0" data-tab="hardware">
-                <span>Hardware</span>
+              <button class="tab-btn px-3 py-1 rounded-lg text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1.5 flex-shrink-0 cursor-pointer" data-tab="hardware">
+                <span>📷 Camera Hardware</span>
               </button>
-              <button class="tab-btn px-2.5 py-1 rounded text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 flex-shrink-0" data-tab="exposure">
-                <span>Exposure</span>
-              </button>
-              <button class="tab-btn px-2.5 py-1 rounded text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 flex-shrink-0" data-tab="raw">
-                <span>Raw Tags</span>
+              <button class="tab-btn px-3 py-1 rounded-lg text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1.5 flex-shrink-0 cursor-pointer" data-tab="exposure">
+                <span>⏱️ Timestamp & Details</span>
               </button>
             </div>
 
-            <!-- Tab 1: GPS -->
+            <!-- Tab 1: GPS Location -->
             <div id="tab-content-gps" class="tab-pane space-y-2.5">
               <div id="gps-alert-box" class="p-2.5 rounded-lg bg-rose-950/30 border border-rose-500/30 text-rose-200 text-xs flex items-start gap-2">
                 <span class="text-sm">⚠️</span>
                 <div>
-                  <strong class="font-semibold text-white block text-[11px]">Location Leak Hazard</strong>
+                  <strong class="font-semibold text-white block text-[11px]">Physical Location Leak Hazard</strong>
                   <p id="gps-alert-text" class="text-[10px] text-rose-300 leading-tight">
-                    Accurate to ~3 meters. Downloading this image exposes physical location coordinates.
+                    Pinpointed to precise GPS coordinates. Uploading this image online reveals exact real-world location.
                   </p>
                 </div>
               </div>
 
               <div class="grid grid-cols-2 gap-2 text-left">
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
                   <span class="text-[10px] text-neutral-500 block font-mono">Latitude</span>
-                  <span id="gps-val-lat" class="text-xs font-semibold text-white font-mono break-all">37.7749° N</span>
+                  <span id="gps-val-lat" class="text-xs font-semibold text-white font-mono break-all">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
                   <span class="text-[10px] text-neutral-500 block font-mono">Longitude</span>
-                  <span id="gps-val-lng" class="text-xs font-semibold text-white font-mono break-all">122.4194° W</span>
+                  <span id="gps-val-lng" class="text-xs font-semibold text-white font-mono break-all">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900 col-span-2">
-                  <span class="text-[10px] text-neutral-500 block font-mono">DMS</span>
-                  <span id="gps-val-dms" class="text-xs font-mono text-neutral-300 break-all">37° 46' 29.8" N, 122° 25' 9.8" W</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900 col-span-2">
+                  <span class="text-[10px] text-neutral-500 block font-mono">DMS Representation</span>
+                  <span id="gps-val-dms" class="text-xs font-mono text-neutral-300 break-all">--</span>
                 </div>
               </div>
 
               <div id="gps-map-links-container" class="flex flex-wrap items-center gap-2 pt-1 text-xs">
-                <a id="link-google-maps" href="#" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 font-mono text-[11px] transition-colors">Google Maps</a>
-                <a id="link-osm" href="#" target="_blank" rel="noopener noreferrer" class="px-2 py-1 rounded bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 font-mono text-[11px] transition-colors">OpenStreetMap</a>
+                <a id="link-google-maps" href="#" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 font-mono text-[11px] transition-colors">View on Google Maps</a>
+                <a id="link-osm" href="#" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded bg-neutral-900 hover:bg-neutral-800 border border-neutral-800 text-neutral-300 font-mono text-[11px] transition-colors">OpenStreetMap</a>
               </div>
 
-              <div id="gps-empty-state" class="hidden p-3 rounded-lg bg-neutral-950 border border-neutral-900 text-center">
-                <span class="text-xs text-neutral-400">No GPS tags detected in this image.</span>
+              <div id="gps-empty-state" class="hidden p-4 rounded-lg bg-neutral-950 border border-neutral-900 text-center">
+                <span class="text-xs text-neutral-400">Zero GPS location tags detected in this image.</span>
               </div>
             </div>
 
-            <!-- Tab 2: Hardware -->
+            <!-- Tab 2: Camera Hardware -->
             <div id="tab-content-hardware" class="tab-pane hidden space-y-2">
               <div class="grid grid-cols-2 gap-2 text-left">
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
-                  <span class="text-[10px] text-neutral-500 block">Make</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
+                  <span class="text-[10px] text-neutral-500 block">Manufacturer</span>
                   <span id="hw-make" class="text-xs font-semibold text-white font-mono truncate block">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
-                  <span class="text-[10px] text-neutral-500 block">Model</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
+                  <span class="text-[10px] text-neutral-500 block">Camera / Phone Model</span>
                   <span id="hw-model" class="text-xs font-semibold text-white font-mono truncate block">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900 col-span-2">
-                  <span class="text-[10px] text-neutral-500 block">Lens</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900 col-span-2">
+                  <span class="text-[10px] text-neutral-500 block">Lens Specification</span>
                   <span id="hw-lens" class="text-xs text-neutral-300 font-mono break-all">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
-                  <span class="text-[10px] text-neutral-500 block">Software OS</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
+                  <span class="text-[10px] text-neutral-500 block">Firmware / OS</span>
                   <span id="hw-software" class="text-xs text-neutral-300 font-mono truncate block">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
-                  <span class="text-[10px] text-rose-400 block font-semibold">Body Serial</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
+                  <span class="text-[10px] text-rose-400 block font-semibold">Body Serial Number</span>
                   <span id="hw-serial" class="text-xs font-mono font-bold text-rose-300 truncate block">--</span>
                 </div>
               </div>
             </div>
 
-            <!-- Tab 3: Exposure -->
+            <!-- Tab 3: Capture Timestamp & Exposure -->
             <div id="tab-content-exposure" class="tab-pane hidden space-y-2">
               <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-left">
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900 col-span-2 sm:col-span-3">
-                  <span class="text-[10px] text-neutral-500 block">Original Timestamp</span>
-                  <span id="exp-date" class="text-xs font-mono text-white">--</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900 col-span-2 sm:col-span-3">
+                  <span class="text-[10px] text-neutral-500 block">Original Date & Time Recorded</span>
+                  <span id="exp-date" class="text-xs font-mono text-white font-medium">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
-                  <span class="text-[10px] text-neutral-500 block">ISO</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
+                  <span class="text-[10px] text-neutral-500 block">ISO Rating</span>
                   <span id="exp-iso" class="text-xs font-mono text-white">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
                   <span class="text-[10px] text-neutral-500 block">Aperture</span>
                   <span id="exp-aperture" class="text-xs font-mono text-white">--</span>
                 </div>
-                <div class="p-2 rounded-lg bg-neutral-950 border border-neutral-900">
-                  <span class="text-[10px] text-neutral-500 block">Shutter</span>
+                <div class="p-2.5 rounded-lg bg-neutral-950 border border-neutral-900">
+                  <span class="text-[10px] text-neutral-500 block">Shutter Speed</span>
                   <span id="exp-shutter" class="text-xs font-mono text-white">--</span>
                 </div>
-              </div>
-            </div>
-
-            <!-- Tab 4: Raw Tags -->
-            <div id="tab-content-raw" class="tab-pane hidden space-y-2">
-              <div class="flex items-center justify-between gap-2">
-                <span class="text-[10px] text-neutral-500">Tags: <strong id="raw-count-text" class="text-neutral-300">0</strong></span>
-                <input 
-                  id="raw-filter-input" 
-                  type="text" 
-                  placeholder="Filter..." 
-                  class="bg-neutral-950 border border-neutral-800 rounded px-2 py-0.5 text-[11px] text-white placeholder-neutral-500 focus:outline-none focus:border-neutral-700 max-w-[110px]"
-                />
-              </div>
-              <div class="max-h-44 overflow-y-auto rounded-lg border border-neutral-900 bg-neutral-950 p-1 font-mono text-[10px]">
-                <table class="w-full text-left">
-                  <tbody id="raw-tags-tbody" class="divide-y divide-neutral-900">
-                    <!-- Rendered dynamically -->
-                  </tbody>
-                </table>
               </div>
             </div>
 
@@ -371,7 +339,6 @@
   const workspaceContainer = document.getElementById('workspace-container') as HTMLDivElement;
   const queueCountBadge = document.getElementById('queue-count-badge') as HTMLSpanElement;
   const thumbnailStrip = document.getElementById('thumbnail-strip') as HTMLDivElement;
-  const selectFormat = document.getElementById('select-format') as HTMLSelectElement;
   const btnCleanAll = document.getElementById('btn-clean-all') as HTMLButtonElement;
   const btnDownloadZip = document.getElementById('btn-download-zip') as HTMLButtonElement;
 
@@ -386,7 +353,7 @@
   const threatBadgeIcon = document.getElementById('threat-badge-icon') as HTMLSpanElement;
   const threatBadgeText = document.getElementById('threat-badge-text') as HTMLSpanElement;
   const btnCleanSingle = document.getElementById('btn-clean-single') as HTMLButtonElement;
-  const btnDownloadSingle = document.getElementById('btn-download-single') as HTMLAnchorElement;
+  const btnCleanSingleText = document.getElementById('btn-clean-single-text') as HTMLSpanElement;
 
   // Tabs
   const tabButtons = document.querySelectorAll('.tab-btn');
@@ -416,11 +383,6 @@
   const expIso = document.getElementById('exp-iso') as HTMLSpanElement;
   const expAperture = document.getElementById('exp-aperture') as HTMLSpanElement;
   const expShutter = document.getElementById('exp-shutter') as HTMLSpanElement;
-
-  // Raw inspector
-  const rawCountText = document.getElementById('raw-count-text') as HTMLElement;
-  const rawTagsTbody = document.getElementById('raw-tags-tbody') as HTMLTableSectionElement;
-  const rawFilterInput = document.getElementById('raw-filter-input') as HTMLInputElement;
 
   // Drag & Drop
   ['dragenter', 'dragover'].forEach(name => {
@@ -499,16 +461,6 @@
           pane.classList.add('hidden');
         }
       });
-    });
-  });
-
-  // Filter raw tags
-  rawFilterInput.addEventListener('input', () => {
-    const query = rawFilterInput.value.toLowerCase().trim();
-    const rows = rawTagsTbody.querySelectorAll('tr');
-    rows.forEach(row => {
-      const text = row.textContent?.toLowerCase() || '';
-      row.style.display = text.includes(query) ? '' : 'none';
     });
   });
 
@@ -597,13 +549,17 @@
       img.className = 'w-full h-full object-cover';
       thumb.appendChild(img);
 
+      const hasSensitiveExif = item.inspection.gps.hasGps ||
+        Boolean(item.inspection.hardware.model || item.inspection.hardware.make) ||
+        item.inspection.totalTagsCount > 3;
+
       const dot = document.createElement('div');
       dot.className = `absolute top-1 right-1 w-2 h-2 rounded-full ${
         item.cleanedResult
           ? 'bg-emerald-400'
-          : item.inspection.threat.level === 'CRITICAL'
+          : hasSensitiveExif
           ? 'bg-rose-500'
-          : 'bg-amber-400'
+          : 'bg-slate-400'
       }`;
       thumb.appendChild(dot);
 
@@ -640,35 +596,43 @@
       cleanedStampBadge.classList.remove('flex');
     }
 
+    // Determine if sensitive EXIF/GPS exists
+    const hasSensitiveExif = item.inspection.gps.hasGps ||
+      Boolean(item.inspection.hardware.model || item.inspection.hardware.make || item.inspection.hardware.serialNumber) ||
+      Boolean(item.inspection.exposure.dateTimeOriginal) ||
+      item.inspection.totalTagsCount > 3;
+
     if (item.cleanedResult) {
+      // 100% Sanitized state
       threatScoreNumber.textContent = "Safe: 0/100";
       threatScoreNumber.className = "text-[11px] font-mono font-medium text-emerald-400";
       threatScoreBar.style.width = "0%";
       threatScoreBar.className = "h-full rounded-full bg-emerald-500";
-      threatBadgeContainer.className = "p-1.5 rounded text-[11px] font-medium border border-emerald-500/30 bg-emerald-950/20 text-emerald-300 flex items-center gap-1.5";
+      threatBadgeContainer.className = "p-2.5 rounded-lg text-xs font-medium border border-emerald-500/30 bg-emerald-950/30 text-emerald-300 flex items-center gap-2";
       threatBadgeIcon.textContent = "🛡️";
-      threatBadgeText.textContent = "100% Sanitized & Safe";
-    } else {
-      const t = item.inspection.threat;
-      threatScoreNumber.textContent = `Score: ${t.score}/100`;
-      threatScoreNumber.className = "text-[11px] font-mono font-medium text-rose-400";
-      threatScoreBar.style.width = `${Math.max(5, t.score)}%`;
+      threatBadgeText.textContent = "100% Sanitized & Safe — Zero Metadata";
+      btnCleanSingleText.textContent = "✓ Photo Saved (Download Again)";
+    } else if (hasSensitiveExif) {
+      // High Contrast Red Alert
+      const score = Math.max(50, item.inspection.threat.score);
+      threatScoreNumber.textContent = `Score: ${score}/100`;
+      threatScoreNumber.className = "text-[11px] font-mono font-bold text-rose-400";
+      threatScoreBar.style.width = `${score}%`;
       threatScoreBar.className = "h-full rounded-full bg-gradient-to-r from-amber-400 via-rose-500 to-red-500";
-      threatBadgeContainer.className = "p-1.5 rounded text-[11px] font-medium border border-rose-500/30 bg-rose-950/30 text-rose-300 flex items-center gap-1.5";
+      threatBadgeContainer.className = "p-2.5 rounded-lg text-xs font-semibold border border-rose-500/50 bg-rose-950/40 text-rose-200 flex items-center gap-2 shadow-[0_0_15px_-3px_rgba(244,63,94,0.3)]";
       threatBadgeIcon.textContent = "🔴";
-      threatBadgeText.textContent = "GPS & Device Signatures Found";
-    }
-
-    if (item.cleanedResult) {
-      btnCleanSingle.classList.add('hidden');
-      btnDownloadSingle.classList.remove('hidden');
-      btnDownloadSingle.classList.add('flex');
-      btnDownloadSingle.href = item.cleanedResult.cleanedUrl;
-      btnDownloadSingle.download = item.cleanedResult.filename;
+      threatBadgeText.textContent = "HIGH PRIVACY LEAK: GPS Coordinates & Device Info Found";
+      btnCleanSingleText.textContent = "Scrub Metadata & Save Photo";
     } else {
-      btnCleanSingle.classList.remove('hidden');
-      btnDownloadSingle.classList.add('hidden');
-      btnDownloadSingle.classList.remove('flex');
+      // Subtle Slate Badge for Clean Web Images
+      threatScoreNumber.textContent = "Clean: 0/100";
+      threatScoreNumber.className = "text-[11px] font-mono font-medium text-slate-400";
+      threatScoreBar.style.width = "0%";
+      threatScoreBar.className = "h-full rounded-full bg-slate-700";
+      threatBadgeContainer.className = "p-2.5 rounded-lg text-xs font-medium border border-slate-700/60 bg-slate-900/60 text-slate-300 flex items-center gap-2";
+      threatBadgeIcon.textContent = "ℹ️";
+      threatBadgeText.textContent = "Clean Web Image — Zero EXIF/GPS Tags Found";
+      btnCleanSingleText.textContent = "Scrub Metadata & Save Photo";
     }
 
     // Tab 1: GPS
@@ -681,18 +645,18 @@
       gpsValLng.textContent = "Stripped";
       gpsValDms.textContent = "None";
       tabGpsCount.textContent = "0";
-      tabGpsCount.className = "px-1 py-0.2 rounded-full bg-neutral-800 text-neutral-400 text-[9px]";
+      tabGpsCount.className = "px-1.5 py-0.2 rounded-full bg-neutral-800 text-neutral-400 text-[10px] font-mono";
     } else if (gps.hasGps && gps.latitude !== null && gps.longitude !== null) {
       gpsAlertBox.classList.remove('hidden');
       gpsEmptyState.classList.add('hidden');
       gpsMapLinksContainer.classList.remove('hidden');
-      gpsValLat.textContent = `${gps.latitude.toFixed(6)}° ${gps.latitudeRef}`;
-      gpsValLng.textContent = `${gps.longitude.toFixed(6)}° ${gps.longitudeRef}`;
+      gpsValLat.textContent = `${gps.latitude.toFixed(6)}° ${gps.latitudeRef || ''}`;
+      gpsValLng.textContent = `${gps.longitude.toFixed(6)}° ${gps.longitudeRef || ''}`;
       gpsValDms.textContent = `${gps.dmsLat || ''}, ${gps.dmsLng || ''}`;
       linkGoogleMaps.href = gps.googleMapsUrl || '#';
       linkOsm.href = gps.osmUrl || '#';
       tabGpsCount.textContent = "!";
-      tabGpsCount.className = "px-1 py-0.2 rounded-full bg-rose-950 text-rose-400 text-[9px]";
+      tabGpsCount.className = "px-1.5 py-0.2 rounded-full bg-rose-950 text-rose-400 text-[10px] font-mono";
     } else {
       gpsAlertBox.classList.add('hidden');
       gpsEmptyState.classList.remove('hidden');
@@ -701,7 +665,7 @@
       gpsValLng.textContent = "None detected";
       gpsValDms.textContent = "None";
       tabGpsCount.textContent = "0";
-      tabGpsCount.className = "px-1 py-0.2 rounded-full bg-neutral-800 text-neutral-400 text-[9px]";
+      tabGpsCount.className = "px-1.5 py-0.2 rounded-full bg-neutral-800 text-neutral-400 text-[10px] font-mono";
     }
 
     // Tab 2: Hardware
@@ -712,56 +676,44 @@
     hwSoftware.textContent = hw.software || 'None';
     hwSerial.textContent = hw.serialNumber || 'None';
 
-    // Tab 3: Exposure
+    // Tab 3: Exposure & Timestamp
     const exp = item.cleanedResult ? {} : item.inspection.exposure;
     expDate.textContent = exp.dateTimeOriginal || 'None';
     expIso.textContent = exp.iso || 'None';
     expAperture.textContent = exp.fNumber || 'None';
     expShutter.textContent = exp.shutterSpeed || 'None';
-
-    // Tab 4: Raw Tags
-    rawTagsTbody.innerHTML = '';
-    const tags = item.cleanedResult ? [] : item.inspection.rawTags;
-    rawCountText.textContent = String(tags.length);
-    if (tags.length === 0) {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td colspan="2" class="py-2 text-center text-neutral-500 italic text-[11px]">No EXIF tags remaining</td>`;
-      rawTagsTbody.appendChild(tr);
-    } else {
-      tags.forEach(t => {
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-neutral-900 transition-colors';
-        tr.innerHTML = `
-          <td class="py-1 px-1.5 text-neutral-400 font-mono text-[10px] whitespace-nowrap">${t.tag}</td>
-          <td class="py-1 px-1.5 text-neutral-300 font-mono text-[10px] break-all">${t.value}</td>
-        `;
-        rawTagsTbody.appendChild(tr);
-      });
-    }
-
-    window.dispatchEvent(new CustomEvent('cleanphoto:active-change', {
-      detail: {
-        hasCleaned: Boolean(item.cleanedResult),
-        cleanedUrl: item.cleanedResult?.cleanedUrl,
-        filename: item.cleanedResult?.filename,
-        totalInQueue: queue.length
-      }
-    }));
   }
 
-  // Clean Single Image
+  function triggerDownload(url: string, filename: string) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  // 1-Click Clean & Download Action
   btnCleanSingle.addEventListener('click', async () => {
     const item = queue[activeIndex];
     if (!item || item.isCleaning) return;
 
+    // If already cleaned, clicking triggers instant re-download
+    if (item.cleanedResult) {
+      triggerDownload(item.cleanedResult.cleanedUrl, item.cleanedResult.filename);
+      return;
+    }
+
     item.isCleaning = true;
     btnCleanSingle.disabled = true;
-    btnCleanSingle.innerHTML = `<span>Sanitizing...</span>`;
+    btnCleanSingleText.textContent = "Scrubbing & Saving Photo...";
 
     try {
-      const format = selectFormat.value as any;
-      const res = await stripImageMetadata(item.file, item.file.name, { outputFormat: format });
+      const res = await stripImageMetadata(item.file, item.file.name, { outputFormat: 'original' });
       item.cleanedResult = res;
+
+      // 1-Click instant automatic download
+      triggerDownload(res.cleanedUrl, res.filename);
 
       renderThumbnailStrip();
       renderActiveItem();
@@ -783,13 +735,11 @@
     const originalText = btnCleanAll.innerHTML;
     btnCleanAll.innerHTML = `<span>Processing...</span>`;
 
-    const format = selectFormat.value as any;
-
     for (let i = 0; i < queue.length; i++) {
       const item = queue[i];
       if (!item.cleanedResult) {
         try {
-          const res = await stripImageMetadata(item.file, item.file.name, { outputFormat: format });
+          const res = await stripImageMetadata(item.file, item.file.name, { outputFormat: 'original' });
           item.cleanedResult = res;
         } catch (err) {
           console.error("Batch strip error on item", i, err);
@@ -832,12 +782,7 @@
       const content = await zip.generateAsync({ type: 'blob' });
       const zipUrl = URL.createObjectURL(content);
 
-      const a = document.createElement('a');
-      a.href = zipUrl;
-      a.download = `cleanphoto_vault_${Date.now()}.zip`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      triggerDownload(zipUrl, `cleanphoto_vault_${Date.now()}.zip`);
 
       setTimeout(() => URL.revokeObjectURL(zipUrl), 5000);
     } catch (err) {
