@@ -35,10 +35,10 @@
       </div>
     </div>
 
-    <!-- Dropzone -->
+    <!-- Dropzone Visual (High-Tech Security Scanner with Glowing Border) -->
     <div 
       id="drop-zone"
-      class="border-2 border-dashed border-white/[0.1] hover:border-rose-500/50 bg-white/[0.02] transition-all rounded-xl p-8 sm:p-10 text-center cursor-pointer group relative overflow-hidden"
+      class="border-2 border-dashed border-rose-500/30 hover:border-rose-500/70 bg-gradient-to-b from-rose-950/10 via-neutral-950/40 to-neutral-950/80 transition-all rounded-2xl p-8 sm:p-11 text-center cursor-pointer group relative overflow-hidden shadow-[0_0_35px_-10px_rgba(225,29,72,0.12)] hover:shadow-[0_0_45px_-5px_rgba(225,29,72,0.28)]"
     >
       <!-- Hidden File Input -->
       <input 
@@ -50,37 +50,40 @@
       />
 
       <div class="flex flex-col items-center justify-center pointer-events-none">
-        <!-- Minimal Upload Icon -->
-        <div class="w-12 h-12 mb-3.5 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:text-rose-400 group-hover:border-rose-500/40 transition-all">
-          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75">
+        <!-- High-Tech Security Scanner Aperture Icon -->
+        <div class="w-14 h-14 mb-3.5 rounded-2xl bg-neutral-900/90 border border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:text-rose-400 group-hover:border-rose-500/50 group-hover:scale-105 shadow-inner transition-all duration-300">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
           </svg>
         </div>
 
-        <h3 class="text-sm sm:text-base font-semibold text-white mb-1">
-          Drag and drop your photos here
+        <h3 class="text-base sm:text-lg font-bold text-white mb-1 tracking-tight">
+          Drop your photo here to scan & scrub
         </h3>
         <p class="text-xs text-neutral-400 max-w-sm mx-auto mb-4 leading-normal">
-          Files are processed in browser RAM and never leave your machine.
+          Instant in-memory privacy scan • Zero cloud upload
         </p>
 
         <!-- White Primary CTA Button -->
         <button
           type="button"
           id="btn-browse-trigger"
-          class="pointer-events-auto inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white hover:bg-neutral-200 text-neutral-950 font-semibold text-xs sm:text-sm transition-all shadow-sm active:scale-95 mb-4"
+          class="pointer-events-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-200 text-neutral-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-95 mb-4 cursor-pointer"
         >
-          <svg class="w-4 h-4 text-neutral-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <svg class="w-4 h-4 text-neutral-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
           </svg>
           <span>Browse Device</span>
         </button>
 
-        <!-- Format Tags: JPG · PNG · WEBP · HEIC · AVIF (Up to 100MB) -->
-        <div class="flex items-center gap-1.5 text-[10px] font-mono text-neutral-400">
-          <span class="bg-neutral-900 border border-neutral-800 px-2.5 py-1 rounded text-neutral-300">
-            JPG · PNG · WEBP · HEIC · AVIF (Up to 100MB)
-          </span>
+        <!-- Clear, Elegant Format Pill Badges: JPG · PNG · WEBP · HEIC · AVIF (Up to 100MB) -->
+        <div class="flex flex-wrap items-center justify-center gap-1.5 text-[10px] sm:text-[11px] font-mono">
+          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">JPG</span>
+          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">PNG</span>
+          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">WEBP</span>
+          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">HEIC</span>
+          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">AVIF</span>
+          <span class="text-neutral-500 ml-1">(Up to 100MB)</span>
         </div>
       </div>
     </div>
@@ -166,33 +169,33 @@
             </div>
 
             <!-- Real-Time EXIF Threat & Detection Badge Box -->
-            <div class="mt-3 p-3 rounded-lg bg-neutral-950 border border-neutral-800/80 space-y-2">
+            <div class="mt-3.5 p-3 rounded-xl bg-neutral-950/90 border border-neutral-800/80 space-y-2.5">
               <div class="flex items-center justify-between gap-2">
-                <span class="text-[10px] font-semibold text-neutral-400 uppercase tracking-wider">Privacy Status</span>
-                <span id="threat-score-number" class="text-[11px] font-mono font-bold text-rose-400">Score: 85/100</span>
+                <span class="text-[10px] font-bold text-neutral-400 uppercase tracking-wider font-mono">Privacy Threat Status</span>
+                <span id="threat-score-number" class="text-xs font-mono font-bold text-rose-400">Score: 85/100</span>
               </div>
               <div class="w-full bg-neutral-900 h-1.5 rounded-full overflow-hidden">
                 <div id="threat-score-bar" class="h-full rounded-full bg-gradient-to-r from-amber-400 via-rose-500 to-red-500 transition-all duration-300" style="width: 85%"></div>
               </div>
               
-              <!-- Real-Time Detection Badge (Clean Web vs Leak Alert vs Sanitized) -->
-              <div id="threat-badge-container" class="p-2.5 rounded-lg text-xs font-semibold border transition-all flex items-center gap-2">
-                <span id="threat-badge-icon" class="flex-shrink-0">🔴</span>
-                <span id="threat-badge-text" class="leading-tight">HIGH PRIVACY LEAK: GPS Coordinates & Device Info Found</span>
+              <!-- Real-Time Detection Badge (Red Threat vs Safe vs Sanitized) -->
+              <div id="threat-badge-container" class="p-3 rounded-xl text-xs font-bold border transition-all flex items-center justify-center gap-2 text-center">
+                <span id="threat-badge-icon" class="text-sm flex-shrink-0">🔴</span>
+                <span id="threat-badge-text" class="tracking-wide uppercase">HIGH PRIVACY RISK DETECTED</span>
               </div>
             </div>
 
-            <!-- 1-Click Scrub & Save Primary Button -->
-            <div class="mt-3">
+            <!-- Single Primary Action Button: Large, Vibrant, Glowing Crimson-to-Rose Gradient -->
+            <div class="mt-3.5">
               <button
                 id="btn-clean-single"
                 type="button"
-                class="w-full py-2.5 px-4 rounded-xl bg-white hover:bg-neutral-200 text-neutral-950 font-semibold text-xs sm:text-sm transition-all active:scale-[0.98] flex items-center justify-center gap-2 shadow-sm cursor-pointer"
+                class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-xs sm:text-sm tracking-wide transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
               >
-                <svg id="btn-clean-icon" class="w-4 h-4 text-neutral-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
-                </svg>
-                <span id="btn-clean-single-text">Scrub Metadata & Save Photo</span>
+                <span id="btn-clean-single-text" class="flex items-center justify-center gap-2">
+                  <span>🛡️</span>
+                  <span>SCRUB PRIVACY LEAKS & SAVE PHOTO</span>
+                </span>
               </button>
             </div>
           </div>
@@ -605,34 +608,37 @@
     if (item.cleanedResult) {
       // 100% Sanitized state
       threatScoreNumber.textContent = "Safe: 0/100";
-      threatScoreNumber.className = "text-[11px] font-mono font-medium text-emerald-400";
+      threatScoreNumber.className = "text-xs font-mono font-bold text-emerald-400";
       threatScoreBar.style.width = "0%";
       threatScoreBar.className = "h-full rounded-full bg-emerald-500";
-      threatBadgeContainer.className = "p-2.5 rounded-lg text-xs font-medium border border-emerald-500/30 bg-emerald-950/30 text-emerald-300 flex items-center gap-2";
+      threatBadgeContainer.className = "p-3 rounded-xl text-xs font-bold border border-emerald-500/40 bg-emerald-950/40 text-emerald-300 flex items-center justify-center gap-2 text-center shadow-[0_0_15px_-3px_rgba(16,185,129,0.25)]";
       threatBadgeIcon.textContent = "🛡️";
-      threatBadgeText.textContent = "100% Sanitized & Safe — Zero Metadata";
-      btnCleanSingleText.textContent = "✓ Photo Saved (Download Again)";
+      threatBadgeText.textContent = "100% SANITIZED & SAFE PHOTO";
+      btnCleanSingleText.innerHTML = `<span>✓</span><span>PHOTO SAVED — DOWNLOAD AGAIN</span>`;
+      btnCleanSingle.className = "w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-600/25 text-white font-bold text-xs sm:text-sm tracking-wide transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
     } else if (hasSensitiveExif) {
       // High Contrast Red Alert
       const score = Math.max(50, item.inspection.threat.score);
       threatScoreNumber.textContent = `Score: ${score}/100`;
-      threatScoreNumber.className = "text-[11px] font-mono font-bold text-rose-400";
+      threatScoreNumber.className = "text-xs font-mono font-bold text-rose-400";
       threatScoreBar.style.width = `${score}%`;
       threatScoreBar.className = "h-full rounded-full bg-gradient-to-r from-amber-400 via-rose-500 to-red-500";
-      threatBadgeContainer.className = "p-2.5 rounded-lg text-xs font-semibold border border-rose-500/50 bg-rose-950/40 text-rose-200 flex items-center gap-2 shadow-[0_0_15px_-3px_rgba(244,63,94,0.3)]";
+      threatBadgeContainer.className = "p-3 rounded-xl text-xs font-bold border border-rose-500/50 bg-rose-950/50 text-rose-200 flex items-center justify-center gap-2 text-center shadow-[0_0_20px_-3px_rgba(244,63,94,0.35)]";
       threatBadgeIcon.textContent = "🔴";
-      threatBadgeText.textContent = "HIGH PRIVACY LEAK: GPS Coordinates & Device Info Found";
-      btnCleanSingleText.textContent = "Scrub Metadata & Save Photo";
+      threatBadgeText.textContent = "HIGH PRIVACY RISK DETECTED";
+      btnCleanSingleText.innerHTML = `<span>🛡️</span><span>SCRUB PRIVACY LEAKS & SAVE PHOTO</span>`;
+      btnCleanSingle.className = "w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-xs sm:text-sm tracking-wide transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
     } else {
-      // Subtle Slate Badge for Clean Web Images
+      // 100% Safe Photo
       threatScoreNumber.textContent = "Clean: 0/100";
-      threatScoreNumber.className = "text-[11px] font-mono font-medium text-slate-400";
+      threatScoreNumber.className = "text-xs font-mono font-bold text-emerald-400";
       threatScoreBar.style.width = "0%";
-      threatScoreBar.className = "h-full rounded-full bg-slate-700";
-      threatBadgeContainer.className = "p-2.5 rounded-lg text-xs font-medium border border-slate-700/60 bg-slate-900/60 text-slate-300 flex items-center gap-2";
-      threatBadgeIcon.textContent = "ℹ️";
-      threatBadgeText.textContent = "Clean Web Image — Zero EXIF/GPS Tags Found";
-      btnCleanSingleText.textContent = "Scrub Metadata & Save Photo";
+      threatScoreBar.className = "h-full rounded-full bg-emerald-500/50";
+      threatBadgeContainer.className = "p-3 rounded-xl text-xs font-bold border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 flex items-center justify-center gap-2 text-center shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]";
+      threatBadgeIcon.textContent = "🟢";
+      threatBadgeText.textContent = "100% SAFE PHOTO";
+      btnCleanSingleText.innerHTML = `<span>🛡️</span><span>SCRUB PRIVACY LEAKS & SAVE PHOTO</span>`;
+      btnCleanSingle.className = "w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-xs sm:text-sm tracking-wide transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
     }
 
     // Tab 1: GPS
@@ -706,7 +712,7 @@
 
     item.isCleaning = true;
     btnCleanSingle.disabled = true;
-    btnCleanSingleText.textContent = "Scrubbing & Saving Photo...";
+    btnCleanSingleText.innerHTML = `<span>⏳</span><span>SCRUBBING IN RAM & SAVING...</span>`;
 
     try {
       const res = await stripImageMetadata(item.file, item.file.name, { outputFormat: 'original' });
