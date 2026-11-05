@@ -1,44 +1,266 @@
 ---
-// Footer.astro - Developer Signature & Operational Status
+// Footer.astro - Polished 3-Column SaaS Footer & Modal Overlays
 ---
 
-<footer class="w-full border-t border-white/10 mt-16 bg-[#070709] py-8">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
-    <!-- Left: Developer Signature -->
-    <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
-      <span class="text-slate-300 font-medium">Crafted for FixeeHub Ecosystem</span>
-      <span class="text-slate-700">•</span>
-      <span class="text-slate-400">100% Client-Side Privacy</span>
-    </div>
+<footer class="w-full border-t border-white/[0.08] mt-20 bg-[#070709] pt-12 pb-16">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <!-- 3-Column SaaS Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 pb-10 border-b border-white/[0.08]">
+      
+      <!-- Column 1 (Left): Brand Logo & Tool Mission -->
+      <div class="space-y-3.5">
+        <a href="/" class="flex items-center gap-2 group w-fit">
+          <div class="w-7 h-7 rounded-lg bg-white/[0.04] border border-white/[0.1] flex items-center justify-center text-slate-200 group-hover:border-rose-500/40 group-hover:text-rose-400 transition-colors">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L4 5v6.5C4 16.5 7.4 20.8 12 22c4.6-1.2 8-5.5 8-10.5V5l-8-3z" />
+              <circle cx="12" cy="11.5" r="4.5" stroke-dasharray="2 1.5" />
+              <circle cx="12" cy="11.5" r="1.2" fill="currentColor" />
+            </svg>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <span class="font-extrabold tracking-tight text-white text-sm">
+              CLEANPHOTO
+            </span>
+            <span class="text-[9px] font-mono text-slate-400 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded">
+              x FIXEEHUB
+            </span>
+          </div>
+        </a>
 
-    <!-- Right: Operational Status & Clean Social Links -->
-    <div class="flex items-center gap-4 flex-wrap justify-center sm:justify-end">
-      <!-- Operational Status Dot -->
-      <div class="inline-flex items-center gap-2 text-slate-300 font-mono">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10B981] animate-pulse"></span>
-        <span class="text-[11px] sm:text-xs">All Systems Operational</span>
+        <p class="text-xs text-slate-300 font-medium leading-relaxed">
+          Zero-trace, 100% browser-side photo privacy tool.
+        </p>
+        <p class="text-[11px] text-slate-500 leading-normal max-w-xs">
+          Engineered to strip GPS tags, camera serial numbers, and device fingerprints directly in client RAM before images touch the internet.
+        </p>
       </div>
 
-      <span class="text-slate-700 hidden sm:inline">•</span>
+      <!-- Column 2 (Middle): Legal & Security Modals -->
+      <div class="space-y-3">
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-300 font-mono">
+          Security & Legal
+        </h4>
+        <ul class="space-y-2 text-xs">
+          <li>
+            <button 
+              type="button" 
+              data-modal-open="privacy" 
+              class="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group text-left cursor-pointer"
+            >
+              <span class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-rose-400 transition-colors"></span>
+              <span>Privacy Policy</span>
+            </button>
+          </li>
+          <li>
+            <button 
+              type="button" 
+              data-modal-open="terms" 
+              class="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group text-left cursor-pointer"
+            >
+              <span class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-rose-400 transition-colors"></span>
+              <span>Terms of Service</span>
+            </button>
+          </li>
+          <li>
+            <button 
+              type="button" 
+              data-modal-open="security" 
+              class="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 group text-left cursor-pointer"
+            >
+              <span class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-rose-400 transition-colors"></span>
+              <span>Security Architecture</span>
+            </button>
+          </li>
+        </ul>
+      </div>
 
-      <!-- Email Link -->
-      <a 
-        href="mailto:contactfixeehub@gmail.com" 
-        class="text-slate-400 hover:text-white transition-colors"
-      >
-        contactfixeehub@gmail.com
-      </a>
+      <!-- Column 3 (Right): Contact & Reliability Status -->
+      <div class="space-y-3.5">
+        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-300 font-mono">
+          Support & Reliability
+        </h4>
 
-      <!-- GitHub -->
-      <a 
-        href="https://github.com/bantymallick88-cell/cleanphoto" 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="text-slate-400 hover:text-white transition-colors"
-        aria-label="GitHub Repository"
+        <!-- Live Green Dot Indicator -->
+        <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/20 text-emerald-400 font-mono text-[11px]">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10B981] animate-pulse"></span>
+          <span class="font-medium">All Systems Operational</span>
+        </div>
+
+        <div>
+          <!-- Sleek Glass Button for Contact Support -->
+          <a 
+            href="mailto:contactfixeehub@gmail.com" 
+            class="inline-flex items-center gap-2 px-3.5 py-2 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-xs font-medium text-slate-200 hover:text-white transition-all shadow-sm active:scale-95 group"
+          >
+            <svg class="w-4 h-4 text-slate-400 group-hover:text-rose-400 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            <span>Contact Support</span>
+          </a>
+          <p class="text-[10px] text-slate-500 font-mono mt-1.5">
+            contactfixeehub@gmail.com
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Copyright & Architecture Notice -->
+    <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 font-mono gap-3 text-center sm:text-left">
+      <span>
+        © 2026 CleanPhoto. Part of FixeeHub Ecosystem.
+      </span>
+      <span class="text-[11px] text-slate-600">
+        100% In-Browser RAM Sanitization • Zero Cloud Telemetry
+      </span>
+    </div>
+  </div>
+
+  <!-- Sleek Modal Overlay Container -->
+  <div 
+    id="footer-modal-backdrop" 
+    class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md items-center justify-center p-4 transition-opacity duration-200"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-title"
+  >
+    <div 
+      id="footer-modal-card" 
+      class="relative w-full max-w-lg bg-[#0e0e12] border border-white/[0.12] rounded-2xl p-6 sm:p-7 shadow-2xl text-left max-h-[85vh] overflow-y-auto"
+    >
+      <!-- Modal Close Button -->
+      <button 
+        type="button" 
+        id="modal-close-trigger" 
+        class="absolute top-5 right-5 text-slate-400 hover:text-white p-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] transition-colors cursor-pointer"
+        aria-label="Close modal"
       >
-        GitHub
-      </a>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Dynamic Content Injection Area -->
+      <div id="modal-body-content"></div>
     </div>
   </div>
 </footer>
+
+<script>
+  // Content definitions for sleek modal overlays
+  const modalContents: Record<string, { title: string; badge: string; content: string }> = {
+    privacy: {
+      title: "Privacy Policy & Zero-Data Guarantee",
+      badge: "Zero-Trace Protocol",
+      content: `
+        <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+          <div class="p-3 rounded-xl bg-emerald-950/20 border border-emerald-500/20 text-emerald-300">
+            <strong>Core Guarantee:</strong> CleanPhoto processes 100% of your images exclusively inside your web browser's volatile memory (RAM). No photos, EXIF tags, GPS coordinates, or personal records ever leave your device.
+          </div>
+
+          <h5 class="text-sm font-semibold text-white pt-1">1. Zero Cloud Uploads</h5>
+          <p>Unlike server-based scrubbers, CleanPhoto does not transmit your images to any remote cloud endpoint, VPS, or third-party API. All operations use client-side HTML5 Canvas and Web API primitives.</p>
+
+          <h5 class="text-sm font-semibold text-white pt-1">2. No Persistent Tracking or Cookies</h5>
+          <p>We do not deploy persistent cookies, canvas fingerprinting, biometric scanners, session recorders, or advertising trackers. Your browsing session remains completely anonymous.</p>
+
+          <h5 class="text-sm font-semibold text-white pt-1">3. Offline Verification</h5>
+          <p>Once loaded, CleanPhoto functions seamlessly in complete offline airplane mode or with your network disconnected, proving zero data transmission.</p>
+        </div>
+      `
+    },
+    terms: {
+      title: "Terms of Service",
+      badge: "Open Privacy Utility",
+      content: `
+        <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+          <p>By accessing CleanPhoto (cleanphoto.fixeehub.com), you agree to the following terms governing this client-side privacy tool:</p>
+
+          <h5 class="text-sm font-semibold text-white pt-1">1. License & Usage</h5>
+          <p>CleanPhoto is provided free of charge for personal, commercial, and investigative privacy sanitization. You retain full copyright and ownership over all original and sanitized images processed.</p>
+
+          <h5 class="text-sm font-semibold text-white pt-1">2. As-Is Operation</h5>
+          <p>CleanPhoto is provided "as-is" without warranty of any kind. While our automated ExifReader inspection and HTML5 Canvas pipeline thoroughly purge EXIF, IPTC, and XMP metadata blocks, users are encouraged to verify sensitive files prior to public distribution.</p>
+
+          <h5 class="text-sm font-semibold text-white pt-1">3. Non-Recoverability</h5>
+          <p>Because CleanPhoto has zero server-side storage or database retention, stripped metadata cannot be retrieved or reconstructed once you close your browser tab.</p>
+        </div>
+      `
+    },
+    security: {
+      title: "Security Architecture",
+      badge: "Cryptographic Isolation",
+      content: `
+        <div class="space-y-4 text-xs text-slate-300 leading-relaxed">
+          <div class="p-3 rounded-xl bg-rose-950/20 border border-rose-500/20 text-rose-300 font-mono text-[11px]">
+            Security Model: Client Sandbox • Memory Isolation • Deep APP1 Purge
+          </div>
+
+          <h5 class="text-sm font-semibold text-white pt-1">1. HTML5 Canvas Pixel Redraw</h5>
+          <p>Rather than attempting complex regex replacement on binary files, CleanPhoto decodes the pure RGB visual bitmap into an isolated HTML5 Canvas and exports a fresh, pristine image blob. This physically omits all APP1 segment markers, GPS IFDs, and camera device serials.</p>
+
+          <h5 class="text-sm font-semibold text-white pt-1">2. Memory Lifecycle Management</h5>
+          <p>All object URLs (<code class="bg-white/10 px-1 py-0.5 rounded text-white">blob:</code>) are generated in volatile browser memory and systematically revoked with <code class="bg-white/10 px-1 py-0.5 rounded text-white">URL.revokeObjectURL()</code> to prevent memory accumulation.</p>
+
+          <h5 class="text-sm font-semibold text-white pt-1">3. In-Browser Batch Archiving</h5>
+          <p>Multi-file ZIP exports are packaged entirely on the client thread using JSZip without intermediate disk writes or remote proxy staging.</p>
+        </div>
+      `
+    }
+  };
+
+  const backdrop = document.getElementById('footer-modal-backdrop') as HTMLDivElement;
+  const modalContentArea = document.getElementById('modal-body-content') as HTMLDivElement;
+  const closeBtn = document.getElementById('modal-close-trigger') as HTMLButtonElement;
+
+  function openModal(key: string) {
+    const data = modalContents[key];
+    if (!data || !backdrop || !modalContentArea) return;
+
+    modalContentArea.innerHTML = `
+      <div class="mb-4">
+        <span class="inline-block px-2 py-0.5 rounded-full bg-white/[0.04] border border-white/[0.1] text-slate-400 font-mono text-[10px] mb-2">
+          ${data.badge}
+        </span>
+        <h3 id="modal-title" class="text-lg font-bold text-white tracking-tight">
+          ${data.title}
+        </h3>
+      </div>
+      ${data.content}
+    `;
+
+    backdrop.classList.remove('hidden');
+    backdrop.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!backdrop) return;
+    backdrop.classList.add('hidden');
+    backdrop.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  // Bind trigger buttons
+  document.querySelectorAll('[data-modal-open]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = (btn as HTMLElement).getAttribute('data-modal-open');
+      if (target) openModal(target);
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  if (backdrop) {
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) closeModal();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop && !backdrop.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>

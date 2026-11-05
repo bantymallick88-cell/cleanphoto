@@ -35,3 +35,4 @@ export async function convertHeicToJpegBlob(file: File | Blob): Promise<Blob> {
     return file;
   }
 }
+
