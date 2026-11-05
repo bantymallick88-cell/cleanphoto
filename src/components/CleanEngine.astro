@@ -232,19 +232,19 @@
                   <div class="space-y-1.5 font-mono text-[11px]">
                     <div>
                       <span class="text-slate-400 block text-[10px]">GPS Coordinates:</span>
-                      <span id="compare-before-gps" class="text-rose-300 break-all">None</span>
+                      <span id="compare-before-gps" class="text-amber-300/90 break-all">Hidden / Raw Metadata Tags Present (Unverified Risk)</span>
                     </div>
                     <div>
                       <span class="text-slate-400 block text-[10px]">Device / Model:</span>
-                      <span id="compare-before-device" class="text-rose-200 truncate block">None</span>
+                      <span id="compare-before-device" class="text-amber-300/90 truncate block">Hidden / Raw Metadata Tags Present (Unverified Risk)</span>
                     </div>
                     <div>
                       <span class="text-slate-400 block text-[10px]">Camera Serial:</span>
-                      <span id="compare-before-serial" class="text-rose-300 truncate block">None</span>
+                      <span id="compare-before-serial" class="text-amber-300/90 truncate block">Hidden / Raw Metadata Tags Present (Unverified Risk)</span>
                     </div>
                     <div>
                       <span class="text-slate-400 block text-[10px]">Creation Date:</span>
-                      <span id="compare-before-date" class="text-rose-200 truncate block">None</span>
+                      <span id="compare-before-date" class="text-amber-300/90 truncate block">Hidden / Raw Metadata Tags Present (Unverified Risk)</span>
                     </div>
                   </div>
                 </div>
@@ -263,25 +263,25 @@
                     <div>
                       <span class="text-slate-400 block text-[10px]">GPS Coordinates:</span>
                       <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                        <span>✓</span> 100% Sanitized / Stripped Clean
+                        <span>✓</span> 100% EXIF & GPS Tags Purged (Safe to Share Online)
                       </span>
                     </div>
                     <div>
                       <span class="text-slate-400 block text-[10px]">Device / Model:</span>
                       <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                        <span>✓</span> 100% Sanitized / Stripped Clean
+                        <span>✓</span> 100% EXIF & GPS Tags Purged (Safe to Share Online)
                       </span>
                     </div>
                     <div>
                       <span class="text-slate-400 block text-[10px]">Camera Serial:</span>
                       <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                        <span>✓</span> 100% Sanitized / Stripped Clean
+                        <span>✓</span> 100% EXIF & GPS Tags Purged (Safe to Share Online)
                       </span>
                     </div>
                     <div>
                       <span class="text-slate-400 block text-[10px]">Creation Date:</span>
                       <span class="text-emerald-400 font-semibold flex items-center gap-1">
-                        <span>✓</span> 100% Sanitized / Stripped Clean
+                        <span>✓</span> 100% EXIF & GPS Tags Purged (Safe to Share Online)
                       </span>
                     </div>
                   </div>
@@ -290,9 +290,9 @@
               </div>
 
               <!-- Verdict Trust Badge -->
-              <div class="p-2 rounded-lg bg-emerald-950/30 border border-emerald-500/20 text-[11px] font-mono text-emerald-300 text-center flex items-center justify-center gap-1.5">
+              <div class="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-500/25 text-[11px] font-mono text-emerald-300 text-center flex items-center justify-center gap-1.5">
                 <span>🛡️</span>
-                <span>Verdict: 100% Sanitized / Stripped Clean • Zero EXIF, IPTC & XMP Segments Persist</span>
+                <span class="font-semibold">✓ 100% EXIF & GPS Tags Purged (Safe to Share Online)</span>
               </div>
             </div>
           </div>
@@ -703,16 +703,58 @@
     const hasActualLeaks = hasGps || hasHardware || hasTimestamp;
 
     // Update Before/After Inspector Values
-    if (hasGps) {
-      compareBeforeGps.textContent = `${item.inspection.gps.latitude?.toFixed(4)}° ${item.inspection.gps.latitudeRef || ''}, ${item.inspection.gps.longitude?.toFixed(4)}° ${item.inspection.gps.longitudeRef || ''}`;
+    const unverifiedRiskHtml = `<span class="inline-flex items-center gap-1.5 text-amber-300 font-mono text-[10px]"><span class="px-1.5 py-0.2 rounded bg-amber-950/90 border border-amber-500/40 text-[9px] text-amber-400 font-semibold uppercase">Risk</span> Hidden / Raw Metadata Tags Present (Unverified Risk)</span>`;
+    const leakAlertBadge = `<span class="px-1.5 py-0.2 rounded bg-rose-950 border border-rose-500/40 text-[9px] text-rose-400 font-bold uppercase tracking-wider flex-shrink-0">Red Leak Alert</span>`;
+
+    if (hasGps && item.inspection.gps.latitude !== null && item.inspection.gps.longitude !== null) {
+      const lat = item.inspection.gps.latitude.toFixed(4);
+      const lng = item.inspection.gps.longitude.toFixed(4);
+      const refLat = item.inspection.gps.latitudeRef || '';
+      const refLng = item.inspection.gps.longitudeRef || '';
+      compareBeforeGps.innerHTML = `
+        <span class="inline-flex flex-wrap items-center gap-1.5 text-rose-300 font-semibold">
+          ${leakAlertBadge}
+          <span>${lat}° ${refLat}, ${lng}° ${refLng}</span>
+        </span>
+      `;
     } else {
-      compareBeforeGps.textContent = "None Detected (Clean)";
+      compareBeforeGps.innerHTML = unverifiedRiskHtml;
     }
 
     const deviceMakeModel = [item.inspection.hardware.make, item.inspection.hardware.model].filter(Boolean).join(' ');
-    compareBeforeDevice.textContent = deviceMakeModel || "None Detected (Clean)";
-    compareBeforeSerial.textContent = item.inspection.hardware.serialNumber || "None Detected (Clean)";
-    compareBeforeDate.textContent = item.inspection.exposure.dateTimeOriginal || item.inspection.exposure.dateTimeDigitized || "None Detected (Clean)";
+    if (deviceMakeModel) {
+      compareBeforeDevice.innerHTML = `
+        <span class="inline-flex flex-wrap items-center gap-1.5 text-rose-300 font-semibold">
+          ${leakAlertBadge}
+          <span class="truncate max-w-[210px]">${deviceMakeModel}</span>
+        </span>
+      `;
+    } else {
+      compareBeforeDevice.innerHTML = unverifiedRiskHtml;
+    }
+
+    if (item.inspection.hardware.serialNumber) {
+      compareBeforeSerial.innerHTML = `
+        <span class="inline-flex flex-wrap items-center gap-1.5 text-rose-300 font-semibold">
+          ${leakAlertBadge}
+          <span class="truncate max-w-[210px]">${item.inspection.hardware.serialNumber}</span>
+        </span>
+      `;
+    } else {
+      compareBeforeSerial.innerHTML = unverifiedRiskHtml;
+    }
+
+    const captureTimestamp = item.inspection.exposure.dateTimeOriginal || item.inspection.exposure.dateTimeDigitized;
+    if (captureTimestamp) {
+      compareBeforeDate.innerHTML = `
+        <span class="inline-flex flex-wrap items-center gap-1.5 text-rose-300 font-semibold">
+          ${leakAlertBadge}
+          <span class="truncate max-w-[210px]">${captureTimestamp}</span>
+        </span>
+      `;
+    } else {
+      compareBeforeDate.innerHTML = unverifiedRiskHtml;
+    }
 
     if (item.cleanedResult) {
       // 100% Sanitized state
@@ -728,18 +770,11 @@
         comparisonContent.classList.remove('hidden');
         comparisonChevron.classList.add('rotate-180');
       }
-    } else if (hasActualLeaks) {
-      // Hidden metadata detected
+    } else {
+      // Unscrubbed image — Always flag that scrubbing is required to eliminate confusing clean claims on unscrubbed files
       threatBadgeContainer.className = "py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold border border-rose-500/50 bg-rose-950/50 text-rose-200 flex items-center justify-center gap-2 text-center shadow-[0_0_20px_-3px_rgba(244,63,94,0.35)]";
       threatBadgeIcon.textContent = "🔴";
       threatBadgeText.textContent = "Hidden Metadata Detected — Scrubbing Required";
-      btnCleanSingleText.innerHTML = `<span>✨</span><span>Clean Metadata & Save Photo</span>`;
-      btnCleanSingle.className = "w-full py-3.5 sm:py-4 px-6 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-sm sm:text-base tracking-wide backdrop-blur-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
-    } else {
-      // Clean image
-      threatBadgeContainer.className = "py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold border border-emerald-500/40 bg-emerald-950/30 text-emerald-300 flex items-center justify-center gap-2 text-center shadow-[0_0_15px_-3px_rgba(16,185,129,0.2)]";
-      threatBadgeIcon.textContent = "🟢";
-      threatBadgeText.textContent = "Clean Image — Ready to Download";
       btnCleanSingleText.innerHTML = `<span>✨</span><span>Clean Metadata & Save Photo</span>`;
       btnCleanSingle.className = "w-full py-3.5 sm:py-4 px-6 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-sm sm:text-base tracking-wide backdrop-blur-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
     }
