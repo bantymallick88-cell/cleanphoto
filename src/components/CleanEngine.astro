@@ -45,7 +45,7 @@
         type="file" 
         id="file-input" 
         multiple 
-        accept="image/jpeg,image/png,image/webp,image/tiff" 
+        accept="image/jpeg, image/jpg, image/png, image/webp, image/heic, image/heif, image/avif" 
         class="hidden" 
       />
 
@@ -76,12 +76,11 @@
           <span>Browse Device</span>
         </button>
 
-        <!-- Format Tags: JPG, PNG, WEBP -->
+        <!-- Format Tags: JPG · PNG · WEBP · HEIC · AVIF (Up to 100MB) -->
         <div class="flex items-center gap-1.5 text-[10px] font-mono text-neutral-400">
-          <span class="bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded">JPG</span>
-          <span class="bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded">PNG</span>
-          <span class="bg-neutral-900 border border-neutral-800 px-2 py-0.5 rounded">WEBP</span>
-          <span class="text-neutral-500 ml-1">Up to 100MB</span>
+          <span class="bg-neutral-900 border border-neutral-800 px-2.5 py-1 rounded text-neutral-300">
+            JPG · PNG · WEBP · HEIC · AVIF (Up to 100MB)
+          </span>
         </div>
       </div>
     </div>
@@ -114,6 +113,7 @@
             <option value="image/jpeg">JPEG (95% Sharp)</option>
             <option value="image/webp">WebP (Optimized)</option>
             <option value="image/png">PNG (Lossless)</option>
+            <option value="image/avif">AVIF (Modern)</option>
           </select>
 
           <button
@@ -346,6 +346,7 @@
   import JSZip from 'jszip';
   import { inspectImageFile, type ImageMetadataInspection } from '../utils/exifParser';
   import { stripImageMetadata, type CleanResult } from '../utils/imageCleaner';
+  import { isHeicFile, convertHeicToJpegBlob } from '../utils/heicHelper';
   import { createDemoPhotoFile } from '../utils/sampleDemoPhoto';
 
   interface QueuedImage {
@@ -512,7 +513,7 @@
   });
 
   async function handleFiles(files: File[]) {
-    const validFiles = files.filter(f => f.type.startsWith('image/') || f.name.match(/\.(jpg|jpeg|png|webp|tiff)$/i));
+    const validFiles = files.filter(f => f.type.startsWith('image/') || f.name.match(/\.(jpg|jpeg|png|webp|heic|heif|avif|tiff)$/i));
     if (validFiles.length === 0) return;
 
     processingLoader.classList.remove('hidden');
@@ -520,7 +521,18 @@
 
     try {
       for (const file of validFiles) {
-        const previewUrl = URL.createObjectURL(file);
+        let previewUrl: string;
+        if (isHeicFile(file)) {
+          try {
+            const convertedBlob = await convertHeicToJpegBlob(file);
+            previewUrl = URL.createObjectURL(convertedBlob);
+          } catch {
+            previewUrl = URL.createObjectURL(file);
+          }
+        } else {
+          previewUrl = URL.createObjectURL(file);
+        }
+
         const inspection = await inspectImageFile(file);
 
         queue.push({

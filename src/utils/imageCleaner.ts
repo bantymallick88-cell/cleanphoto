@@ -1,8 +1,9 @@
-// Client-Side Canvas Stripping Engine
+// Client-Side Canvas Stripping Engine with HEIC/AVIF Graceful Support
 import { inspectImageFile, type ImageMetadataInspection } from './exifParser';
+import { isHeicFile, convertHeicToJpegBlob } from './heicHelper';
 
 export interface CleanOptions {
-  outputFormat?: 'original' | 'image/jpeg' | 'image/webp' | 'image/png';
+  outputFormat?: 'original' | 'image/jpeg' | 'image/webp' | 'image/png' | 'image/avif';
   quality?: number; // 0.1 to 1.0 (default 0.95 for lossy formats)
 }
 
@@ -25,33 +26,65 @@ export async function stripImageMetadata(
 ): Promise<CleanResult> {
   const quality = options.quality ?? 0.95;
   const originalSize = file.size;
+  const isHeic = isHeicFile(file, originalFilename);
 
   // Determine output MIME type
   let targetMime = file.type || 'image/jpeg';
   if (options.outputFormat && options.outputFormat !== 'original') {
     targetMime = options.outputFormat;
-  } else if (!targetMime || targetMime === 'application/octet-stream') {
-    // Infer from filename extension
-    if (originalFilename.toLowerCase().endsWith('.png')) targetMime = 'image/png';
-    else if (originalFilename.toLowerCase().endsWith('.webp')) targetMime = 'image/webp';
-    else targetMime = 'image/jpeg';
+  } else if (!targetMime || targetMime === 'application/octet-stream' || isHeic) {
+    // If HEIC, canvas cannot encode to image/heic in browsers, so default to high-quality JPEG
+    if (isHeic) {
+      targetMime = 'image/jpeg';
+    } else if (originalFilename.toLowerCase().endsWith('.png')) {
+      targetMime = 'image/png';
+    } else if (originalFilename.toLowerCase().endsWith('.webp')) {
+      targetMime = 'image/webp';
+    } else if (originalFilename.toLowerCase().endsWith('.avif')) {
+      targetMime = 'image/avif';
+    } else {
+      targetMime = 'image/jpeg';
+    }
+  }
+
+  // Handle image decoding source blob
+  let decodeBlob: Blob = file;
+  if (isHeic) {
+    decodeBlob = await convertHeicToJpegBlob(file);
   }
 
   // Load into Image element
-  const imgUrl = URL.createObjectURL(file);
+  let imgUrl = URL.createObjectURL(decodeBlob);
   const img = new Image();
 
   try {
     await new Promise<void>((resolve, reject) => {
       img.onload = () => resolve();
-      img.onerror = () => reject(new Error("Unable to decode image file in browser RAM"));
+      img.onerror = async () => {
+        // If first attempt failed and it's HEIC that wasn't converted yet, try conversion
+        if (isHeic && decodeBlob === file) {
+          try {
+            const fallbackBlob = await convertHeicToJpegBlob(file);
+            URL.revokeObjectURL(imgUrl);
+            imgUrl = URL.createObjectURL(fallbackBlob);
+            img.onload = () => resolve();
+            img.onerror = () => reject(new Error("Unable to decode HEIC image in browser memory"));
+            img.src = imgUrl;
+            return;
+          } catch (e) {
+            reject(new Error("HEIC image decoding failed in browser RAM: " + (e as Error).message));
+            return;
+          }
+        }
+        reject(new Error("Unable to decode image file in browser RAM"));
+      };
       img.src = imgUrl;
     });
 
     const width = img.naturalWidth || img.width;
     const height = img.naturalHeight || img.height;
 
-    // Use offscreen canvas or standard canvas
+    // Use HTML5 Canvas
     const canvas = document.createElement('canvas');
     canvas.width = width;
     canvas.height = height;
@@ -69,21 +102,31 @@ export async function stripImageMetadata(
     ctx.imageSmoothingEnabled = true;
     ctx.imageSmoothingQuality = 'high';
 
-    // If JPEG, fill white background to prevent black background on transparent PNGs converted to JPEG
+    // If JPEG, fill white background to prevent black backgrounds on transparent pixels
     if (targetMime === 'image/jpeg') {
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(0, 0, width, height);
     }
 
-    // Draw the pure pixel buffer - this inherently drops all APP1 EXIF, IPTC, and XMP markers
+    // Draw the raw visual pixel buffer (this strips 100% EXIF, IPTC, and XMP markers)
     ctx.drawImage(img, 0, 0, width, height);
 
-    // Export pure sanitized pixel blob
+    // Export sanitized pixel blob
     const cleanedBlob: Blob = await new Promise((resolve, reject) => {
       canvas.toBlob(
         (blob) => {
           if (blob) resolve(blob);
-          else reject(new Error("Canvas toBlob failed to serialize sanitized image"));
+          else {
+            // Fallback to image/jpeg if specific format wasn't supported for encoding
+            canvas.toBlob(
+              (fallback) => {
+                if (fallback) resolve(fallback);
+                else reject(new Error("Canvas toBlob failed to serialize sanitized image"));
+              },
+              'image/jpeg',
+              quality
+            );
+          }
         },
         targetMime,
         targetMime === 'image/png' ? undefined : quality
@@ -92,7 +135,7 @@ export async function stripImageMetadata(
 
     const cleanedUrl = URL.createObjectURL(cleanedBlob);
 
-    // Post-cleaning verification: verify 0 EXIF or GPS tags remain
+    // Post-cleaning verification pass
     let verifiedInspection: ImageMetadataInspection;
     try {
       verifiedInspection = await inspectImageFile(cleanedBlob);
@@ -119,13 +162,14 @@ export async function stripImageMetadata(
       !verifiedInspection.hardware.serialNumber && 
       !verifiedInspection.hardware.model;
 
-    // Determine output file name
+    // Determine output file extension
     const extParts = originalFilename.split('.');
     const baseName = extParts.slice(0, -1).join('.') || originalFilename;
     let targetExt = 'jpg';
-    if (targetMime === 'image/png') targetExt = 'png';
-    else if (targetMime === 'image/webp') targetExt = 'webp';
-    else if (targetMime === 'image/jpeg') targetExt = 'jpg';
+    if (cleanedBlob.type === 'image/png' || targetMime === 'image/png') targetExt = 'png';
+    else if (cleanedBlob.type === 'image/webp' || targetMime === 'image/webp') targetExt = 'webp';
+    else if (cleanedBlob.type === 'image/avif' || targetMime === 'image/avif') targetExt = 'avif';
+    else targetExt = 'jpg';
 
     const cleanFilename = `${baseName}_clean.${targetExt}`;
 
@@ -137,11 +181,10 @@ export async function stripImageMetadata(
       originalDimensions: { width, height },
       verifiedTagsCount,
       is100PercentClean,
-      format: targetMime,
+      format: cleanedBlob.type || targetMime,
       filename: cleanFilename,
     };
   } finally {
     URL.revokeObjectURL(imgUrl);
   }
 }
-
