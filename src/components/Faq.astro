@@ -2,13 +2,13 @@
 // Faq.astro - Linear / Vercel Minimal Border-Bottom Accordion
 ---
 
-<section id="faq" class="w-full max-w-3xl mx-auto px-4 py-8 scroll-mt-20 text-left">
+<section id="faq" class="w-full scroll-mt-20 text-left">
   <!-- Section Header -->
   <div class="mb-6">
     <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-white mb-1.5">
       Frequently Asked Questions
     </h2>
-    <p class="text-xs sm:text-sm text-slate-400 font-normal">
+    <p class="text-xs sm:text-sm text-slate-300 font-normal">
       Technical verification, privacy guarantees, and local architecture.
     </p>
   </div>
@@ -24,8 +24,8 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </summary>
-      <div class="pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
-        CleanPhoto operates 100% inside your browser's JavaScript engine. It loads your image onto an offscreen <code class="text-slate-300 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">HTML5 Canvas</code> at full native dimensions and re-encodes pure pixel data into a fresh Blob. Because canvas rasterization only copies pixel color channels (RGBA), metadata blocks like EXIF APP1, IPTC, XMP, and GPS coordinates are physically dropped.
+      <div class="pt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+        CleanPhoto operates 100% inside your browser's JavaScript engine. It loads your image onto an offscreen <code class="text-slate-200 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">HTML5 Canvas</code> at full native dimensions and re-encodes pure pixel data into a fresh Blob. Because canvas rasterization only copies pixel color channels (RGBA), metadata blocks like EXIF APP1, IPTC, XMP, and GPS coordinates are physically dropped.
       </div>
     </details>
 
@@ -37,7 +37,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </summary>
-      <div class="pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
+      <div class="pt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
         You can independently prove this at any time:
         <ul class="list-disc list-inside mt-2 space-y-1.5">
           <li><strong>Airplane Mode:</strong> Load the web app, disconnect your internet connection, and drop any photo. CleanPhoto continues to parse, sanitize, and export files completely offline.</li>
@@ -54,8 +54,8 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </summary>
-      <div class="pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
-        No. The canvas width and height match <code class="text-slate-300 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">naturalWidth</code> and <code class="text-slate-300 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">naturalHeight</code> pixel-for-pixel with high-precision smoothing enabled. By default, pristine 95% quality is applied for JPEG and 100% lossless compression for PNG.
+      <div class="pt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
+        No. The canvas width and height match <code class="text-slate-200 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">naturalWidth</code> and <code class="text-slate-200 bg-white/[0.04] border border-white/[0.08] px-1.5 py-0.5 rounded font-mono text-[11px]">naturalHeight</code> pixel-for-pixel with high-precision smoothing enabled. By default, pristine 95% quality is applied for JPEG and 100% lossless compression for PNG.
       </div>
     </details>
 
@@ -67,7 +67,7 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </summary>
-      <div class="pt-3 text-xs sm:text-sm text-slate-400 leading-relaxed">
+      <div class="pt-3 text-xs sm:text-sm text-slate-300 leading-relaxed">
         CleanPhoto supports all modern web image formats: <strong>JPEG / JPG, PNG, and WebP</strong>. You can choose to preserve the original format or cross-convert during export.
       </div>
     </details>

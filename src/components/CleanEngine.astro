@@ -1,16 +1,16 @@
 ---
-// CleanEngine.astro - Linear / Vercel Floating Scrubber Card with Live Before/After Audit
+// CleanEngine.astro - Modernized Glassmorphic Scrubber & Live Before/After Audit
 ---
 
-<div id="clean-engine" class="w-full max-w-3xl mx-auto px-4 py-2 scroll-mt-20">
+<div id="clean-engine" class="w-full scroll-mt-20">
   
-  <!-- Scrubber Dropzone Card Container with Ambient Red Glow -->
-  <div class="glass-panel rounded-2xl p-5 sm:p-6 transition-all border-rose-500/20 shadow-[0_0_50px_-15px_rgba(225,29,72,0.12)]">
+  <!-- Scrubber Dropzone Card Container with Ambient Emerald / Dark Glow -->
+  <div class="glass-panel rounded-2xl p-4 sm:p-6 transition-all border-emerald-500/20 shadow-[0_0_40px_-15px_rgba(16,185,129,0.15)]">
     
     <!-- Card Header -->
-    <div class="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.08]">
+    <div class="flex items-center justify-between pb-3.5 mb-3.5 border-b border-white/[0.08]">
       <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+        <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10B981] animate-pulse"></span>
         <h2 class="text-sm sm:text-base font-semibold text-white tracking-tight">EXIF Threat Scrubber</h2>
       </div>
 
@@ -18,16 +18,16 @@
         <button
           id="btn-load-sample"
           type="button"
-          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-slate-300 hover:text-white text-xs font-mono transition-all active:scale-95"
+          class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-slate-200 hover:text-white text-xs font-mono transition-all active:scale-95"
         >
-          <span class="text-rose-400">⚡</span>
+          <span class="text-emerald-400">⚡</span>
           <span>Load Demo Sample</span>
         </button>
 
         <button
           id="btn-clear-all"
           type="button"
-          class="hidden items-center gap-1 px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-slate-400 hover:text-rose-400 text-xs font-mono transition-all"
+          class="hidden items-center gap-1 px-2.5 py-1 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.1] text-slate-300 hover:text-rose-400 text-xs font-mono transition-all"
           title="Reset files"
         >
           Reset
@@ -35,10 +35,10 @@
       </div>
     </div>
 
-    <!-- Dropzone Visual (High-Tech Security Scanner with Glowing Pulse Animation) -->
+    <!-- Dropzone Visual (Modern Glassmorphic Box with Emerald Border Glow Pulse) -->
     <div 
       id="drop-zone"
-      class="border-2 border-dashed border-rose-500/30 hover:border-rose-500/70 bg-gradient-to-b from-rose-950/10 via-neutral-950/40 to-neutral-950/80 transition-all duration-300 rounded-2xl p-8 sm:p-11 text-center cursor-pointer group relative overflow-hidden shadow-[0_0_35px_-10px_rgba(225,29,72,0.12)] hover:shadow-[0_0_45px_-5px_rgba(225,29,72,0.28)]"
+      class="border-2 border-dashed border-emerald-500/40 hover:border-emerald-400 bg-white/5 hover:bg-white/[0.08] transition-all duration-300 rounded-2xl p-7 sm:p-9 text-center cursor-pointer group relative overflow-hidden shadow-[0_0_30px_-5px_rgba(16,185,129,0.15)] hover:shadow-[0_0_40px_rgba(16,185,129,0.3)] backdrop-blur-md"
     >
       <!-- Hidden File Input -->
       <input 
@@ -51,58 +51,58 @@
 
       <div class="flex flex-col items-center justify-center pointer-events-none">
         <!-- High-Tech Security Scanner Aperture Icon -->
-        <div id="dropzone-icon-box" class="w-14 h-14 mb-3.5 rounded-2xl bg-neutral-900/90 border border-neutral-800 flex items-center justify-center text-neutral-400 group-hover:text-rose-400 group-hover:border-rose-500/50 group-hover:scale-105 shadow-inner transition-all duration-300">
+        <div id="dropzone-icon-box" class="w-13 h-13 sm:w-14 sm:h-14 mb-3 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 group-hover:text-emerald-300 group-hover:border-emerald-500/50 group-hover:scale-105 shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all duration-300">
           <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
           </svg>
         </div>
 
         <h3 id="dropzone-title" class="text-base sm:text-lg font-bold text-white mb-1 tracking-tight">
-          Drop your photo here to scan & scrub
+          Drop photo here to scan & scrub
         </h3>
-        <p id="dropzone-subtitle" class="text-xs text-neutral-400 max-w-sm mx-auto mb-4 leading-normal">
+        <p id="dropzone-subtitle" class="text-xs sm:text-sm text-slate-300 max-w-sm mx-auto mb-4 leading-normal font-normal">
           Instant in-memory privacy scan • Zero cloud upload
         </p>
 
-        <!-- White Primary CTA Button -->
+        <!-- Primary Action Button: High contrast gradient (bg-emerald-500 hover:bg-emerald-400 text-black font-bold) -->
         <button
           type="button"
           id="btn-browse-trigger"
-          class="pointer-events-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-neutral-200 text-neutral-950 font-bold text-xs sm:text-sm transition-all shadow-md active:scale-95 mb-4 cursor-pointer"
+          class="pointer-events-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20 active:scale-95 mb-4 cursor-pointer"
         >
-          <svg class="w-4 h-4 text-neutral-950" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+          <svg class="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
           </svg>
           <span>Browse Device</span>
         </button>
 
-        <!-- Clear, Elegant Format Pill Badges: JPG · PNG · WEBP · HEIC · AVIF (Up to 100MB) -->
+        <!-- Clear Format Pill Badges -->
         <div class="flex flex-wrap items-center justify-center gap-1.5 text-[10px] sm:text-[11px] font-mono">
-          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">JPG</span>
-          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">PNG</span>
-          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">WEBP</span>
-          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">HEIC</span>
-          <span class="bg-neutral-900/90 border border-neutral-800 px-2 py-0.5 rounded text-neutral-300 font-medium">AVIF</span>
-          <span class="text-neutral-500 ml-1">(Up to 100MB)</span>
+          <span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-slate-200 font-medium">JPG</span>
+          <span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-slate-200 font-medium">PNG</span>
+          <span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-slate-200 font-medium">WEBP</span>
+          <span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-slate-200 font-medium">HEIC</span>
+          <span class="bg-white/5 border border-white/10 px-2 py-0.5 rounded text-slate-200 font-medium">AVIF</span>
+          <span class="text-slate-400 ml-1">(Up to 100MB)</span>
         </div>
       </div>
     </div>
 
     <!-- Loading State Indicator -->
-    <div id="processing-loader" class="hidden my-4 p-4 rounded-xl bg-neutral-900/40 border border-neutral-800 text-center">
-      <div class="inline-flex items-center justify-center w-8 h-8 rounded-full border-2 border-rose-500 border-t-transparent animate-spin mb-2"></div>
+    <div id="processing-loader" class="hidden my-4 p-4 rounded-xl bg-neutral-900/60 border border-neutral-800 text-center">
+      <div class="inline-flex items-center justify-center w-8 h-8 rounded-full border-2 border-emerald-400 border-t-transparent animate-spin mb-2"></div>
       <h4 id="loader-status-text" class="text-xs font-semibold text-white">Inspecting EXIF Metadata...</h4>
-      <p class="text-[10px] text-neutral-400 mt-0.5 font-mono">Parsing memory buffers locally</p>
+      <p class="text-[10px] text-slate-300 mt-0.5 font-mono">Parsing memory buffers locally</p>
     </div>
 
     <!-- Active Work Area (Queue & Clean View) -->
-    <div id="workspace-container" class="hidden mt-6 space-y-4">
+    <div id="workspace-container" class="hidden mt-5 space-y-4">
       
       <!-- Toolbar: Queue count + Clean Batch Actions -->
-      <div class="p-3 rounded-xl bg-neutral-900/40 border border-neutral-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div class="p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div class="flex items-center gap-2">
           <span class="text-xs font-semibold text-white">Queue:</span>
-          <span id="queue-count-badge" class="px-2 py-0.5 rounded bg-neutral-800 text-neutral-300 text-[11px] font-mono">
+          <span id="queue-count-badge" class="px-2 py-0.5 rounded bg-neutral-900 text-slate-300 text-[11px] font-mono border border-neutral-800">
             0 files
           </span>
         </div>
@@ -111,9 +111,9 @@
           <button
             id="btn-clean-all"
             type="button"
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white hover:bg-neutral-200 text-neutral-950 font-semibold text-xs transition-all active:scale-95 cursor-pointer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs transition-all active:scale-95 cursor-pointer shadow-sm"
           >
-            <svg class="w-3.5 h-3.5 text-neutral-900" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <svg class="w-3.5 h-3.5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span>Scrub All Files</span>
@@ -137,15 +137,15 @@
         <!-- Rendered dynamically -->
       </div>
 
-      <!-- Selected Image Inspector Details (Ultra-Clean Single Card) -->
-      <div id="inspector-card" class="max-w-xl mx-auto w-full pt-1">
-        <div class="p-4 sm:p-5 rounded-2xl bg-neutral-900/50 border border-neutral-800/80 backdrop-blur-xl space-y-4">
+      <!-- Selected Image Inspector Details -->
+      <div id="inspector-card" class="w-full pt-1">
+        <div class="p-4 sm:p-5 rounded-2xl bg-neutral-900/60 border border-white/[0.08] backdrop-blur-xl space-y-4">
           <!-- File info header -->
           <div class="flex items-center justify-between gap-2">
-            <span id="active-filename" class="text-xs sm:text-sm font-semibold text-white truncate max-w-[240px]">
+            <span id="active-filename" class="text-xs sm:text-sm font-semibold text-white truncate max-w-[220px]">
               photo.jpg
             </span>
-            <span id="active-dimensions" class="text-[10px] sm:text-xs font-mono px-2 py-0.5 rounded bg-neutral-950 text-neutral-400 border border-neutral-800 flex-shrink-0">
+            <span id="active-dimensions" class="text-[10px] sm:text-xs font-mono px-2 py-0.5 rounded bg-neutral-950 text-slate-300 border border-neutral-800 flex-shrink-0">
               -- × --
             </span>
           </div>
@@ -153,14 +153,14 @@
           <!-- Preview Box with 1-Click Lightbox Trigger -->
           <div 
             id="preview-trigger-container"
-            class="relative rounded-xl overflow-hidden bg-neutral-950 border border-neutral-900 flex items-center justify-center min-h-[200px] max-h-[340px] cursor-pointer group/preview"
+            class="relative rounded-xl overflow-hidden bg-neutral-950 border border-neutral-900 flex items-center justify-center min-h-[190px] max-h-[300px] cursor-pointer group/preview"
             title="Click to view full preview"
           >
             <img 
               id="active-preview-img" 
               src="" 
               alt="Photo preview" 
-              class="max-w-full max-h-[320px] object-contain rounded transition-transform duration-300 group-hover/preview:scale-[1.02]" 
+              class="max-w-full max-h-[290px] object-contain rounded transition-transform duration-300 group-hover/preview:scale-[1.02]" 
             />
 
             <!-- Cleaned Stamp Badge -->
@@ -184,12 +184,12 @@
             <span id="threat-badge-text" class="tracking-wide">Hidden Metadata Detected — Scrubbing Required</span>
           </div>
 
-          <!-- Action Button: Modern Glassmorphic Action Button -->
+          <!-- Action Button: High contrast gradient (bg-emerald-500 hover:bg-emerald-400 text-black font-bold) -->
           <div class="pt-1">
             <button
               id="btn-clean-single"
               type="button"
-              class="w-full py-3.5 sm:py-4 px-6 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-sm sm:text-base tracking-wide backdrop-blur-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
+              class="w-full py-3.5 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm sm:text-base tracking-wide shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer"
             >
               <span id="btn-clean-single-text" class="flex items-center justify-center gap-2">
                 <span>✨</span>
@@ -198,7 +198,7 @@
             </button>
           </div>
 
-          <!-- 1. Live Before/After Metadata Inspector (Expandable Accordion) -->
+          <!-- Live Before/After Metadata Inspector (Expandable Accordion) -->
           <div id="metadata-comparison-card" class="pt-2 border-t border-white/[0.08] transition-all duration-300">
             <button
               id="btn-toggle-comparison"
@@ -350,7 +350,7 @@
         <button
           type="button"
           id="btn-lightbox-download"
-          class="w-full sm:w-auto px-4 py-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-xs font-sans transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
+          class="w-full sm:w-auto px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-xs font-sans transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 shadow-md"
         >
           <span>✓</span>
           <span id="lightbox-download-text">Download Cleaned Photo</span>
@@ -497,13 +497,13 @@
     });
   }
 
-  // Dropzone Glow Animation on Drag Over
+  // Dropzone Glow Pulse on Hover & Drag Over
   ['dragenter', 'dragover'].forEach(name => {
     dropZone.addEventListener(name, (e) => {
       e.preventDefault();
       e.stopPropagation();
-      dropZone.classList.add('border-emerald-400', 'bg-emerald-950/20', 'shadow-[0_0_50px_rgba(16,185,129,0.35)]', 'scale-[1.01]');
-      dropZone.classList.remove('border-rose-500/30');
+      dropZone.classList.add('border-emerald-400', 'bg-emerald-950/30', 'shadow-[0_0_50px_rgba(16,185,129,0.45)]', 'scale-[1.01]', 'animate-pulse');
+      dropZone.classList.remove('border-emerald-500/40');
     });
   });
 
@@ -511,8 +511,8 @@
     dropZone.addEventListener(name, (e) => {
       e.preventDefault();
       e.stopPropagation();
-      dropZone.classList.remove('border-emerald-400', 'bg-emerald-950/20', 'shadow-[0_0_50px_rgba(16,185,129,0.35)]', 'scale-[1.01]');
-      dropZone.classList.add('border-rose-500/30');
+      dropZone.classList.remove('border-emerald-400', 'bg-emerald-950/30', 'shadow-[0_0_50px_rgba(16,185,129,0.45)]', 'scale-[1.01]', 'animate-pulse');
+      dropZone.classList.add('border-emerald-500/40');
     });
   });
 
@@ -700,7 +700,6 @@
     const hasGps = Boolean(item.inspection.gps && item.inspection.gps.hasGps && item.inspection.gps.latitude !== null && item.inspection.gps.longitude !== null);
     const hasHardware = Boolean(item.inspection.hardware && (item.inspection.hardware.make || item.inspection.hardware.model || item.inspection.hardware.serialNumber || item.inspection.hardware.lensModel));
     const hasTimestamp = Boolean(item.inspection.exposure && (item.inspection.exposure.dateTimeOriginal || item.inspection.exposure.dateTimeDigitized));
-    const hasActualLeaks = hasGps || hasHardware || hasTimestamp;
 
     // Update Before/After Inspector Values
     const unverifiedRiskHtml = `<span class="inline-flex items-center gap-1.5 text-amber-300 font-mono text-[10px]"><span class="px-1.5 py-0.2 rounded bg-amber-950/90 border border-amber-500/40 text-[9px] text-amber-400 font-semibold uppercase">Risk</span> Hidden / Raw Metadata Tags Present (Unverified Risk)</span>`;
@@ -762,7 +761,7 @@
       threatBadgeIcon.textContent = "🛡️";
       threatBadgeText.textContent = "100% Cleaned & Sanitized — Saved";
       btnCleanSingleText.innerHTML = `<span>✓</span><span>Photo Saved — Download Again</span>`;
-      btnCleanSingle.className = "w-full py-3.5 sm:py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-lg shadow-emerald-600/25 text-white font-bold text-sm sm:text-base tracking-wide backdrop-blur-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
+      btnCleanSingle.className = "w-full py-3.5 px-6 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm sm:text-base tracking-wide shadow-lg shadow-emerald-600/25 transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
       
       // Auto-open comparison when sanitized for visual trust
       if (!isComparisonOpen) {
@@ -776,7 +775,7 @@
       threatBadgeIcon.textContent = "🔴";
       threatBadgeText.textContent = "Hidden Metadata Detected — Scrubbing Required";
       btnCleanSingleText.innerHTML = `<span>✨</span><span>Clean Metadata & Save Photo</span>`;
-      btnCleanSingle.className = "w-full py-3.5 sm:py-4 px-6 rounded-2xl bg-gradient-to-r from-rose-600 to-red-600 hover:from-rose-500 hover:to-red-500 shadow-lg shadow-rose-600/30 text-white font-bold text-sm sm:text-base tracking-wide backdrop-blur-md transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
+      btnCleanSingle.className = "w-full py-3.5 px-6 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-bold text-sm sm:text-base tracking-wide shadow-lg shadow-emerald-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2 cursor-pointer";
     }
   }
 

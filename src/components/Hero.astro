@@ -1,29 +1,29 @@
 ---
-// Hero.astro - Principal Linear / Vercel Standard
+// Hero.astro - Responsive Left Column Bento & Hero
 ---
 
-<section class="relative pt-16 pb-8 sm:pt-20 sm:pb-10 text-center px-4 overflow-hidden max-w-4xl mx-auto">
+<div class="space-y-6">
   <!-- Sleek Top Pill Badge -->
-  <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-rose-950/40 border border-rose-500/20 text-rose-300 text-xs font-mono mb-6 shadow-sm">
+  <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/40 border border-emerald-500/25 text-emerald-400 text-xs font-mono shadow-sm">
     <span class="flex h-2 w-2 relative">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
       <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
     </span>
-    <span>100% In-Browser RAM Sanitization</span>
+    <span class="font-medium">100% In-Browser RAM Sanitization</span>
   </div>
 
-  <!-- Hero Headline with Subtle Gradient Fill -->
-  <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.12] mb-4 bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-400">
+  <!-- Hero Headline with High Contrast Gradient Fill -->
+  <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.12] bg-clip-text text-transparent bg-gradient-to-b from-white via-slate-100 to-slate-300">
     Strip Hidden EXIF & GPS Leaks Before You Post Online
   </h1>
 
-  <!-- Clean Muted Subtitle -->
-  <p class="text-sm sm:text-base text-slate-400 max-w-xl mx-auto mb-10 leading-[1.65] font-normal">
-    Smartphone cameras secretly tag your exact home coordinates, device serial numbers, and timestamps. CleanPhoto permanently purges all metadata locally in browser RAM before public upload.
+  <!-- Clean High-Contrast Subtitle -->
+  <p class="text-sm sm:text-base text-slate-200 leading-relaxed font-normal">
+    Smartphone cameras secretly record your exact home coordinates, device serial numbers, and capture timestamps into every image file. CleanPhoto permanently purges all metadata locally in browser RAM before public upload.
   </p>
 
-  <!-- Re-architected Feature Grid: Sleek 2x2 Bento Cards -->
-  <div id="features" class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto text-left scroll-mt-20">
+  <!-- Re-architected Feature Grid: Sleek Bento Cards -->
+  <div id="features" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 pt-2 scroll-mt-20">
     <!-- Card 1 -->
     <div class="glass-panel glass-panel-hover rounded-xl p-3.5 flex items-start gap-3.5">
       <div class="p-2 rounded-lg bg-white/[0.04] border border-white/[0.08] text-rose-400 flex-shrink-0 mt-0.5">
@@ -34,7 +34,7 @@
       </div>
       <div>
         <h3 class="text-xs sm:text-sm font-semibold text-white">GPS Coordinate Scrub</h3>
-        <p class="text-[11px] text-slate-400 leading-normal mt-0.5">Eliminates latitude, longitude, and altitude triangulation</p>
+        <p class="text-xs text-slate-300 leading-normal mt-0.5">Eliminates latitude, longitude, and altitude triangulation</p>
       </div>
     </div>
 
@@ -47,7 +47,7 @@
       </div>
       <div>
         <h3 class="text-xs sm:text-sm font-semibold text-white">Zero Server Footprint</h3>
-        <p class="text-[11px] text-slate-400 leading-normal mt-0.5">100% in-browser memory HTML5 Canvas rasterization</p>
+        <p class="text-xs text-slate-300 leading-normal mt-0.5">100% in-browser memory HTML5 Canvas rasterization</p>
       </div>
     </div>
 
@@ -60,7 +60,7 @@
       </div>
       <div>
         <h3 class="text-xs sm:text-sm font-semibold text-white">Hardware Anonymizer</h3>
-        <p class="text-[11px] text-slate-400 leading-normal mt-0.5">Wipes device serial IDs, lens info, and OS software builds</p>
+        <p class="text-xs text-slate-300 leading-normal mt-0.5">Wipes device serial IDs, lens info, and OS software builds</p>
       </div>
     </div>
 
@@ -73,8 +73,8 @@
       </div>
       <div>
         <h3 class="text-xs sm:text-sm font-semibold text-white">Batch ZIP Export</h3>
-        <p class="text-[11px] text-slate-400 leading-normal mt-0.5">1-click bundled archive with local privacy certificate</p>
+        <p class="text-xs text-slate-300 leading-normal mt-0.5">1-click bundled archive with local privacy audit certificate</p>
       </div>
     </div>
   </div>
-</section>
+</div>

@@ -133,18 +133,30 @@ const faqSchema = {
       <Header />
 
       <!-- Main Content -->
-      <main class="flex-1">
-        <!-- Hero Section with Top Pill & Bento Feature Grid -->
-        <Hero />
+      <main class="flex-1 w-full max-w-5xl mx-auto px-4 md:px-8 py-6 sm:py-10">
+        <!-- Responsive Split Layout (Desktop >= 768px: 2 columns; Mobile < 768px: stacked) -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 items-start">
+          
+          <!-- Left Side: Hero Section, Privacy Badges, and Feature Cards -->
+          <div class="md:col-span-6 lg:col-span-5 space-y-6">
+            <Hero />
+          </div>
 
-        <!-- Floating Scrubber Dropzone Card -->
-        <CleanEngine />
+          <!-- Right Side (Sticky): Main Dropzone Scrubber Box & Inspection Panel -->
+          <div class="md:col-span-6 lg:col-span-7 md:sticky md:top-24">
+            <CleanEngine />
+          </div>
 
-        <!-- Inspiring Human Privacy Story -->
-        <PrivacyStory />
+        </div>
 
-        <!-- Clean Border-Bottom Accordion FAQs -->
-        <Faq />
+        <!-- Full-Width Bottom Sections -->
+        <div class="mt-14 sm:mt-20 space-y-10 sm:space-y-14">
+          <!-- Inspiring Human Privacy Story -->
+          <PrivacyStory />
+
+          <!-- Clean Border-Bottom Accordion FAQs -->
+          <Faq />
+        </div>
       </main>
 
       <!-- Developer Signature & Operational Status Footer -->
